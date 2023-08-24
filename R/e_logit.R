@@ -1,6 +1,7 @@
 e_logit<-function(explaining=0){
 if(explaining==0) {
 cat("  library(gmodels) ", '\n')
+cat("  df<-BasicData ", '\n')
 cat("  re <- glm(debt2~car_conv+car_satprice+gender, family='binomial', data=df) ", '\n')
 cat("  아무거나2<-c(1, 3, 4, 1) ", '\n')
 cat("  아무거나3<-coef(re) ", '\n')
