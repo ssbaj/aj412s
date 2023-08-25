@@ -31,11 +31,16 @@ for (i in 1:n){
 if(nchar(df[,ymdata][i])==6) {
 df$DATE[i]<-change_ymdata1(df[,ymdata][i])
 } 
+
 else{
 df$DATE[i]<-change_ymdata2(df[,ymdata][i])
 } }
 
-df$DATE<-as.Date(df$DATE_form)
+
+
+
+
+df$DATE<-as.Date(df$DATE)
 return(df)
 }
 
