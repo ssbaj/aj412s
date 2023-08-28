@@ -3,7 +3,9 @@ e_moonBook<-function(explaining=0){
 if(explaining==0) {
 cat(" ", '\n')
 cat("  library(moonBook); library(ztable); library(aj412s) ", '\n')
+cat(" ", '\n')
 cat("  options(ztable.type='viewer')  ", '\n')
+cat(" ", '\n')
 cat("  df<-BasicData  ", '\n')
 cat("  ## 회귀분석결과를 테이블로 만들기 ", '\n')
 cat("  re<-lm(car_satprice~gender+car_conv, data=df) ", '\n')

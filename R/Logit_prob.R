@@ -1,6 +1,6 @@
 ## 활용법: Logit_prob(로짓결과)
 
-Logit_prob <- function( LogitResult, my_input=c(1) ){
+logit_prob <- function( LogitResult, my_input=c(1) ){
 
 if (base::missing(LogitResult)) {
 	return(cat("  my_input<-c(1,0,2)  *NOTE: 1=constant, 0='value of X1', 2='value of X2' "))  
@@ -100,7 +100,7 @@ for(i in 2:length(OriginData)){
    cat(  variable_names2[m] , "=" , my_input[m]  , "; ")
     }
    cat('    ' , '\n')
-   cat('***입력의확률:', 확률se, '\n')
+   cat('*** 확률(%):', 확률se, '\n')
    cat('*** ------------------------------------------------------------------------------ ', '\n')
    break
    }

@@ -2,6 +2,7 @@
 e_ztable<-function(explaining=0){
 if(explaining==0) {
 cat("  library(moonBook); library(ztable) ", '\n')
+cat("  ", '\n')
 cat("  options(ztable.type='viewer')  ", '\n')
 cat("  ", '\n')
 cat("  # max.ylev는 독립변수 코딩값이 몇 종류인지를 지정하는 옵션. 디폴트=5  ", '\n')
