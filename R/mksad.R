@@ -3,7 +3,7 @@
 mksad<-function(df,  DATE_col,  data_col,  SeaMethod=1 , ma.method=5) {
 
  if (base::missing(df)) {
-	    cat("  # Install.packages(c('magrittr', 'seasonal', 'forecast'))  ", '\n')
+	    cat("  # Install.packages(c('dplyr', 'seasonal', 'forecast'))  ", '\n')
         cat("  방법1) x11으로 계절조정: df<-mk_sa(df, DATE컬럼번호, Data컬럼번호) ", '\n') 
         cat("  방법2) 이동평균법으로 seasonal adjust  옵션 지정 ----------  ", '\n') 
         cat("        5기간 이동평균: df<-mk_sa(df, DATE컬럼번호, Data컬럼번호,  2  ) ", '\n')
@@ -12,7 +12,7 @@ mksad<-function(df,  DATE_col,  data_col,  SeaMethod=1 , ma.method=5) {
 return(cat("            (2) 이동평균법 사용시, 3기간으로 하려면 ma.method=3 / 7기간은 ma.method=7 등등)", '\n'))
  }
 
-library(magrittr)
+library(dplyr)
 df<-as.data.frame(df)
 
 if( class(df[ ,DATE_col])!="Date")  {
