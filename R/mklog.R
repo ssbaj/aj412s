@@ -13,7 +13,7 @@ mklog<-function(name_dataset, select_columns) {
 	cat("  CORRECT COMMAND: df<-mklog(data.frame, number of column)", '\n')
 	cat("  EXAMPLE:         df<-mklog(data.frame, 3)", '\n')
 	return(0) }
-     
+  name_dataset<-as.data.frame(name_dataset)
   tmp<-(name_dataset[select_columns])
   colnames(tmp)<-c("log_")
   n<-nrow(tmp)
