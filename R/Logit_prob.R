@@ -1,4 +1,4 @@
-## 활용법: Logit_prob(로짓결과)
+## 활용법: logit_prob(로짓결과)
 
 logit_prob <- function( LogitResult, my_input=c(1) ){
 
@@ -48,6 +48,8 @@ Return_variablenames<-function(LogitResult) {
   tmpdataframe<-tmpdataframe[complete.cases(tmpdataframe), ]
   return(tmpdataframe)
 }
+
+
 
 ## Return Variable Names ----------------------------
 
