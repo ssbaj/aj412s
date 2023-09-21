@@ -67,7 +67,7 @@ if(length(my_input)==1) { OriginData<-r } else{ OriginData<-my_input }
 
 if(length(my_input)==1) {  cat('*** 확률계산을 위한 OriginData 입력값: ', OriginData, '\n')  }
 if(length(my_input)==1) { cat('    OriginData의 첫 번째값 1은 상수항을 의미함', '\n') }
-cat('*** 임의의 독립변수값 지정방법: ', 'Logit_prob(Logit결과, c(1, 독립변수1값, 독립변수2값 ...) ) ', '\n')
+cat('*** 임의의 독립변수값 지정방법: ', 'logit_prob(Logit결과, c(1, 독립변수1값, 독립변수2값 ...) ) ', '\n')
 cat('*** ------------------------------------------------------------------------------    ', '\n')
 if(length(my_input)==1) {  cat('   ','독립변수', '  Origin확률(%) ', ' 증가확률(%)=최종확률-Origin확률 ', ' 최종확률(%) ', '\n')  }
 
