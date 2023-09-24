@@ -8,7 +8,7 @@ mksad<-function(df,  DATE_col,  data_col,  SeaMethod=1 , ma.method=5) {
         cat("  방법2) 이동평균법으로 seasonal adjust  옵션 지정 ----------  ", '\n') 
         cat("        5기간 이동평균: df<-mksad(df, DATE컬럼번호, data컬럼번호,  2  ) ", '\n')
         cat("        5기간 외의 이동평균: df<-mksad(df, DATE컬럼번호, data컬럼번호,  2 , ma.method=이동평균_기간/디폴트_5기간 ) ", '\n')
-        cat("            (1) adjusting.method의 디폴트는 1(=x11방법), 2(=5기간 이동평균법) ", '\n')
+        cat("            (1) adjusting.method의 디폴트는 1(=x11방법), 2(=이동평균법) ", '\n')
 return(cat("            (2) 이동평균법 사용시, 3기간으로 하려면 ma.method=3 / 7기간은 ma.method=7 등등)", '\n'))
  }
 
