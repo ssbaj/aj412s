@@ -185,7 +185,10 @@ cat("  sink('결과저장.csv')  ", '\n')
 cat("    ……  ", '\n')
 cat("  sink()  ", '\n')
 cat("   ", '\n')
-
+cat("## 화면 print option & 미싱데이터NA 채우기 ------- ", '\n')
+cat("  options(max.print=1000000)  ", '\n')
+cat("  zoo::na.locf(df)  ", '\n')
+cat("   ", '\n')
 
 } }
 
