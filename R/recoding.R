@@ -40,7 +40,7 @@ if( class(origindata)=="numeric" | class(origindata)=="integer" ) {
   }  }
 
   name_dataset2<-cbind(name_dataset, origindata2)
-  colnames(name_dataset2)[k+1] <- paste0(colnames(name_dataset[select_columns]), "se" , sep='')
+  colnames(name_dataset2)[k+1] <- paste0(colnames(name_dataset[select_columns]), "_se" , sep='')
   return(name_dataset2)
 }
 
