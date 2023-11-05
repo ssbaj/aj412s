@@ -1,12 +1,15 @@
 ## 활용법: logit_prob(로짓결과)
 
-logit_prob <- function( LogitResult, my_input=c(1) ){
+logit_prob <- function( LogitResult, my_optionx=0 , my_input=c(1) ){
 
 if (base::missing(LogitResult)) {
-	return(cat("  my_input<-c(1,0,2)  *NOTE: 1=constant, 0='value of X1', 2='value of X2' "))  
-	return(cat("  logit_prob( LogitResult, my_input ) "))  
-	}
-
+	cat("  더미는 1증가, 연속변수 1증가: logit_prob( LogitResult)   ", '\n')
+	cat("  더미는 1증가, 연속변수 30%증가: logit_prob( LogitResult, 30)   ", '\n')
+	cat("  ------------------------------------------------------------   ", '\n')
+	cat("  독립변수에 임의의 값 지정: my_input<-c(1,0,2)  *NOTE: 1=constant, 0='value of X1', 2='value of X2' ", '\n')
+	cat("  logit_prob( LogitResult, 0, my_input)   ", '\n')
+	return(cat("  ") ) }
+	
 
 ## Return Variable Names ----------------------------
 
@@ -56,18 +59,25 @@ Return_variablenames<-function(LogitResult) {
 r=c()
 max.ylev<-2
 nvariables<-LogitResult$rank
+OriginData<-NA
 
 for(i in 1:nvariables){
-if( nrow(unique(LogitResult$model[i])) > max.ylev ) { r=c(r, median(LogitResult$model[, i])) }
+if( ( nrow(unique(LogitResult$model[i])) > max.ylev )  ) { r=c(r, median(LogitResult$model[, i])) }
 else {r<-c(r, 0)} }
-
 r[1]<-1
 
-if(length(my_input)==1) { OriginData<-r } else{ OriginData<-my_input }
+print(r)
+
+
+if( length(my_input)==1 ) { OriginData <- r } else{ OriginData<-my_input } 
+
+print(OriginData)
 
 if(length(my_input)==1) {  cat('*** 확률계산을 위한 OriginData 입력값: ', OriginData, '\n')  }
 if(length(my_input)==1) { cat('    OriginData의 첫 번째값 1은 상수항을 의미함', '\n') }
-cat('*** 임의의 독립변수값 지정방법: ', 'logit_prob(Logit결과, c(1, 독립변수1값, 독립변수2값 ...) ) ', '\n')
+cat('*** OriginData를 이용한 확률계산: ', 'logit_prob( Logit결과 ) ', '\n')
+cat('*** OriginData 중 연속형변수값을 30% 증가시켰을 때의 확률계산: ', 'logit_prob( Logit결과, 30 ) ', '\n')
+cat('*** 임의의 독립변수값 지정방법: ', 'logit_prob(Logit결과, 0, c(1, 독립변수1값, 독립변수2값 ...) ) ', '\n')
 cat('*** ------------------------------------------------------------------------------    ', '\n')
 if(length(my_input)==1) {  cat('   ','독립변수', '  Origin확률(%) ', ' 증가확률(%)=최종확률-Origin확률 ', ' 최종확률(%) ', '\n')  }
 
@@ -75,7 +85,11 @@ variable_names<-Return_variablenames(LogitResult)
 
 for(i in 2:length(OriginData)){
    input<-OriginData
-   input[i]<-input[i]+1
+
+if( ( my_optionx>0 ) & ( nrow(unique(LogitResult$model[i])) > max.ylev ) )  {
+	input[i] <- (median(LogitResult$model[,i]))*(1 + my_optionx/100)  }
+else {input[i]<-input[i]+1 }
+
 
    확률계산자료<-as.data.frame(LogitResult$coef)
    확률계산자료<-cbind(확률계산자료, input)

@@ -2,8 +2,8 @@ mkdate_series<-function(df, start_y, start_m, mq ){
 
 if (base::missing(df)) {
 	    cat("  df<-as.data.frame(df) ", '\n')
-		cat("  Input date format: start_y=2001, start_m=4, 12=monthly or 4=quarterly data  ", '\n')
-		return(cat("  df<-mkdate_series(df, 2001, 4, 12)   ") )  }
+		cat("  Input date format: 연도=2001, 월=4, 월별자료=12 or 분기별자료=4  ", '\n')
+		return(cat("  df<-mkdate_series(df, 2015, 4, 12)   ") )  }
 
 df<-as.data.frame(df)
 n<-nrow(df)

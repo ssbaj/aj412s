@@ -1,6 +1,4 @@
-# Hello, world!
-#
-# This is an example function named 'hello' 
+# This is an example function named 'hello_git' 
 # which prints 'Hello, world!'.
 #
 # You can learn more about package authoring with RStudio at:
@@ -13,6 +11,10 @@
 #   Check Package:             'Ctrl + Shift + E'
 #   Test Package:              'Ctrl + Shift + T'
 
-hello <- function() {
-  print("Hello, world!")
+hello_git <- function() {
+  
+  cat("  git add .   ", '\n')
+  cat("  git commit -m "first commit"   ", '\n')
+  cat("  git push origin master   ", '\n')
+  
 }
