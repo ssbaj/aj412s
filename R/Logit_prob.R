@@ -66,18 +66,15 @@ if( ( nrow(unique(LogitResult$model[i])) > max.ylev )  ) { r=c(r, median(LogitRe
 else {r<-c(r, 0)} }
 r[1]<-1
 
-print(r)
-
 
 if( length(my_input)==1 ) { OriginData <- r } else{ OriginData<-my_input } 
 
-print(OriginData)
 
 if(length(my_input)==1) {  cat('*** 확률계산을 위한 OriginData 입력값: ', OriginData, '\n')  }
 if(length(my_input)==1) { cat('    OriginData의 첫 번째값 1은 상수항을 의미함', '\n') }
-cat('*** OriginData를 이용한 확률계산: ', 'logit_prob( Logit결과 ) ', '\n')
-cat('*** OriginData 중 연속형변수값을 30% 증가시켰을 때의 확률계산: ', 'logit_prob( Logit결과, 30 ) ', '\n')
-cat('*** 임의의 독립변수값 지정방법: ', 'logit_prob(Logit결과, 0, c(1, 독립변수1값, 독립변수2값 ...) ) ', '\n')
+cat('*** 확률계산1) OriginData를 이용한 확률계산: ', 'logit_prob( Logit결과 ) ', '\n')
+cat('*** 확률계산2) OriginData 중 연속형변수값을 30% 증가시켰을 때의 확률계산: ', 'logit_prob( Logit결과, 30 ) ', '\n')
+cat('*** 확률계산3) 독립변수값 지정: ', 'logit_prob(Logit결과, 0, c(1, 독립변수1값, 독립변수2값 ...) ) ', '\n')
 cat('*** ------------------------------------------------------------------------------    ', '\n')
 if(length(my_input)==1) {  cat('   ','독립변수', '  Origin확률(%) ', ' 증가확률(%)=최종확률-Origin확률 ', ' 최종확률(%) ', '\n')  }
 
