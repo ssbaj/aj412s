@@ -16,7 +16,7 @@ tmp<-cbind(x,y,z)
 tmp<-as.data.frame(tmp)
 rm(x,y,z)
 
-cor2(tmp)
+cor2(tmp, method='pearson' or 'spearman' or 'kendall')
 
 
 }

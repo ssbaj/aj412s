@@ -1,7 +1,7 @@
-cor2<-function(k0_dataset){
+cor2<-function(k0_dataset, method='pearson'){
 
 if (base::missing(k0_dataset)) {
-	 return(cat("  cor2(df) "))}
+	 return(cat("  cor2(df, method='pearson' or 'kendall' or 'spearman') "))}
 
 MYc2n <- function(x){
      groups = unique(x)
@@ -22,7 +22,7 @@ k8_dataset[,i][k8_dataset[,i] == '']<-NA
 k8_dataset<-k8_dataset[complete.cases(k8_dataset), ]
 cat('*** Number of Data : ', nrow(k8_dataset), '\n')
 
-MYcorrelation1<-round( cor(k8_dataset, method='pearson') , 4)
+MYcorrelation1<-round( cor(k8_dataset, method=method) , 4)
 MYcorrelation2<-MYcorrelation1
 MYcorrelation2[upper.tri(MYcorrelation1)] <- ''
 MYcorrelation3<-as.data.frame(MYcorrelation2)
