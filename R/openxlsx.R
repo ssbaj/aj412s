@@ -12,7 +12,19 @@ if (base::missing(datasetname)) {
 tryCatch({
 tmp.df<-read_excel(datasetname, skip=skip, col_names=header)
 }, error = function(e) {
-  cat("  # Error: How to solve? # library(readxl); library(aj412s); openxlsx() ", '\n')
+  cat("  # Error: How to solve? ==>  library(readxl) ; df<-openxlsx(...)  ", '\n')
 })
+
+
+tmp<-read_excel(datasetname, skip=skip, col_names=header)
+num_vars <- ncol(tmp)
+variable_names <- paste0("V", 1:num_vars, sep = "")
+
+if(header==F) {
+for(i in 1:num_vars){
+colnames(tmp)[i] <- variable_names[i]
+} }
+
+return(tmp)
 }
 
