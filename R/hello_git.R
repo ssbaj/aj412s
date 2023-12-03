@@ -16,5 +16,6 @@ hello_git <- function() {
   cat("  git add .   ", '\n')
   cat("  git commit -m 'first commit'   ", '\n')
   cat("  git push origin master   ", '\n')
-  
+  cat("  devtools::install_github('ssbaj/aj412s')   ", '\n')
+
 }
