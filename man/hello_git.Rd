@@ -10,7 +10,10 @@ Upload data to github
 \examples{
 
   git add .
-  git commit -m 'first commit'  --> 홑 따옴표 대신 쌍따옴표를 사용해야 합니다
+  
+  ## first commit에 쌍따옴표를 사용해야 합니다
+  git commit -m  first commit  
+  
   git push origin master
 
 }
