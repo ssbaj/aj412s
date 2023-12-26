@@ -1,4 +1,4 @@
-openxlsx<-function(datasetname, header=F, skip=0) {
+openxlsx<-function(datasetname, header=F, skip=0, sheet=1) {
 
 if (base::missing(datasetname)) {
 	cat("", '\n')
@@ -19,7 +19,7 @@ tmp.df<-read_excel(datasetname, skip=skip, col_names=header)
 })
 
 
-tmp<-read_excel(datasetname, skip=skip, col_names=header)
+tmp<-read_excel(datasetname, skip=skip, col_names=header, sheet=sheet)
 num_vars <- ncol(tmp)
 
 variable_names <- paste0("V", 1:num_vars, sep = "")

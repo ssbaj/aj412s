@@ -6,7 +6,7 @@
 mkgroup<-function(name_dataset, select_columns, CuttingNumber) {
    
    if (base::missing(name_dataset)) {
-	 cat("    df<-mkgroup(df, 8, cn)  *NOTE: df=데이터셋, 8=그룹핑해야 하는 변수는 8번째 변수, cn=Cutting Number ", '\n')
+	 cat("    df<-mkgroup(df, 8, cn)  *NOTE: df=데이터셋, 8=그룹핑해야 하는 변수는 8번째 변수, cn=Cutting Number, 변수<cn 선택 ", '\n')
 	    cat("                            *NOTE: cn<-c( 4, 6 ) or cn<-quantile(df$edu, c(.25, .5, .75)) ", '\n')
 		cat("    df[8]의 값이 1,2,3, ..., 7,8이고, cn<-c( 4, 6 )이면 1~3은 1로, 4,5는 2로, 6이상은 3으로 ", '\n')
 		return(cat("    df<-df%>%relocate(edu, .before=edu2)") ) }
