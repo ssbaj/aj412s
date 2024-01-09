@@ -199,11 +199,11 @@ cat("   ", '\n')
 
 invisible(readline(prompt="Press [enter] to continue"))
 cat("   ", '\n')
-cat("## 데이터의 성격을 한꺼번에 바꾸기 ------- ", '\n')
-cat("  index<-c(1:5, 7:9)  ", '\n')
-cat("  df<-lapply(df[,index], as.numeric)  ", '\n')
+cat("## wide format -> logn format ------- ", '\n')
+cat("  df2<-reshape(df, idvar='id', varying=c(3:7), v.names='y', direction='long')  ", '\n')
 cat("   ", '\n')
-
+cat("## relocate variables ------- ", '\n')
+cat("  df%>%relocate(satprice , .after=id) ", '\n')
 
 } }
 
