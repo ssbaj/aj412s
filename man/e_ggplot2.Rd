@@ -1,11 +1,11 @@
-\name{e_ggplot}
-\alias{e_ggplot}
-\title{e_ggplot}
+\name{e_ggplot2}
+\alias{e_ggplot2}
+\title{e_ggplot2}
 \usage{
-e_ggplot()
+e_ggplot2()
 }
 \description{
-e_ggplot Program
+e_ggplot2 Program
 }
 \examples{
 
@@ -59,15 +59,6 @@ ggplot(데이터A,
 ggplot(data=mpg,mapping = aes(x=displ, y=hwy))
 	+ geom_smooth()
 	+ geom_point()
-
-
-mtcars$cyl<-as.factor(mtcars$cyl)
-mtcars$gear <- as.factor(mtcars$gear)
-ggplot(data = mtcars, aes(x=disp, y=mpg, shape=cyl, col=cyl)) + geom_point(size=3) + ylim(10,35) + theme(axis.text.x=element_text(color='black', size=13, angle=-40, vjust=-.5)) + scale_y_continuous(labels =scales:: comma) + theme(axis.text.y=element_text(color='black', size=13)) + theme(title=element_text(size=30, face='bold')) + theme(axis.title.x = element_text(size=25,face='bold')) + theme(axis.title.x = element_text(size=25,face='bold')) + labs(x='자동차 배기량', y='자동차 연비', title='배기량 대비 연비') + scale_colour_discrete(name="엔진의 기통수") + scale_shape_discrete(name="엔진의 기통수") + theme(legend.title=element_text(size=14), legend.text=element_text(size=10))
-
-
-ggplot(mtcars)+geom_point(aes(x=disp, y=mpg, size=2.5)) + geom_smooth(aes(x=disp, y=mpg)) +  theme(axis.text.x=element_text(color='black', size=13, angle=-40, vjust=-.5)) + scale_y_continuous(labels =scales:: comma) + theme(axis.text.y=element_text(color='black', size=13)) + theme(title=element_text(size=30, face='bold')) + theme(axis.title.x = element_text(size=25,face='bold')) + theme(axis.title.x = element_text(size=25,face='bold')) + labs(x='자동차 배기량', y='자동차 연비', title='배기량 대비 연비')+ theme(legend.position = 'none') 
-
 
 
 }
