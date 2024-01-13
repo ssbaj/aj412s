@@ -2,9 +2,7 @@ e_ggplot1<-function(explaining=0){
 
 if(explaining==0) {
 cat("  ", '\n')
-cat("library(ggplot2) ", '\n')
-cat("library(car) # Faculty salaries data ", '\n')
-cat("library(lattice) # Singer data ", '\n')
+cat("library(ggplot2); library(car); library(lattice); library(gridExtra) ", '\n')
 cat("  ", '\n')
 cat("ggplot(data=mtcars, aes(x=wt, y=mpg)) +  ", '\n')
 cat("  geom_point(pch=17, color='blue', size=2) +  ", '\n')
