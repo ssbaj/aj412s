@@ -3,8 +3,7 @@ panel_diff<-function(AdataSet, T){
 if (base::missing(AdataSet)) {
     return(	
       cat("  Please Exclue character/Date variables, then yse panel_diff() ", "\n")
-	  cat("  diffDataSet<-panel_diff(KoreaMacro, 1)  *NOTE:1=시계열데이터", "\n")
-	  cat("  diffDataSet<-panel_diff(Panel_Dataset, 3)  *NOTE:3=Repeating되는 기간", "\n")
+	  cat("  diffDataSet<-panel_diff(Panel_Dataset, 3)  *NOTE:1=시계열데이터 3=Repeating되는 기간", "\n")
 	  
     )}
 
