@@ -4,7 +4,7 @@ panel_diff<-function(AdataSet, T){
 if (base::missing(AdataSet)) {
 	    cat("  diffDataSet<-panel_diff(Panel_Dataset, 1)  *NOTE: 1=시계열데이터  ", '\n')
 		cat("  diffDataSet<-panel_diff(Panel_Dataset, 3)  *NOTE: 3=Repeating되는 기간 ", '\n')
-		return(cat("  Data set에서 Character, Date 변수를 제거한 후 panel_diff사용 바람 ) ") )  }
+		return(cat("  Data set에서 Character, Date 변수를 제거한 후 panel_diff사용 바람  ") )  }
 
 df<-as.data.frame(AdataSet)
 

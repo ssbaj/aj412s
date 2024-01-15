@@ -27,7 +27,7 @@ rownames(df)<-c(1,2,3,4,5,6,7,8,9)
 
 ## differencing panel dataset, year=3YR
 
-tmp<-panel_diff(panel_dataset, 3)
+tmp<-panel_diff(df, 3)
 
 
 }
