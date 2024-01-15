@@ -1,4 +1,4 @@
-cor2<-function(k0_dataset, method='pearson'){
+cor22<-function(k0_dataset, method='pearson'){
 
 if (base::missing(k0_dataset)) {
 	 return(cat("  cor2(df, method='pearson' or 'kendall' or 'spearman') "))}

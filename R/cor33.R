@@ -1,4 +1,4 @@
-cor3 <- function(x, y, z=NULL, selecting_z=0){
+cor33 <- function(x, y, z=NULL, selecting_z=0){
  
  if (base::missing(x)) {
 	    return(cat("  cor3(df$car_conv, df$car_satprice, df$gender, 1) "))  }

@@ -1,8 +1,8 @@
-\name{cor2}
-\alias{cor2}
+\name{cor22}
+\alias{cor22}
 \title{Calc: correlation of chosen data set}
 \usage{
-cor2()
+cor22()
 }
 \description{
 Calculating the correlation coefficient of data set.
@@ -16,7 +16,7 @@ tmp<-cbind(x,y,z)
 tmp<-as.data.frame(tmp)
 rm(x,y,z)
 
-cor2(tmp, method='pearson' or 'spearman' or 'kendall')
+cor22(tmp, method='pearson' or 'spearman' or 'kendall')
 
 
 }

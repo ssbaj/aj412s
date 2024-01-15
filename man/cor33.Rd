@@ -1,8 +1,8 @@
-\name{cor3}
-\alias{cor3}
+\name{cor33}
+\alias{cor33}
 \title{Calc: correlation only selected data}
 \usage{
-cor3()
+cor33()
 }
 \description{
 Calculating the correlation coefficient.
@@ -16,10 +16,10 @@ data<-cbind(x,y,z)
 data<-as.data.frame(data)
 rm(x,y,z)
 
-cor3(data$x, data$y, data$z, 1)
-cor3(data$x, data$y, data$z, 2)
-cor3(data$x, data$y, data$z, 3)
-cor3(data$x, data$y, data$z, 4)
+cor33(data$x, data$y, data$z, 1)
+cor33(data$x, data$y, data$z, 2)
+cor33(data$x, data$y, data$z, 3)
+cor33(data$x, data$y, data$z, 4)
 
 
 }
