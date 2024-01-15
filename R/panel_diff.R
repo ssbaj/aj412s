@@ -1,13 +1,23 @@
 panel_diff<-function(AdataSet, T){
-  
- ## AdataSet = name of dataset, 2018~2020 : T=3
-  
+   
 if (base::missing(AdataSet)) {
     return(	
-      cat("  diffDataSet<-diff_dataset(panel_dataset, 3)  *NOTE:3=Repeating되는 기간", "\n")
+      cat("  데이터셋에서 character/Date 변수는 제외 후, panel_diff사용하세요", "\n")
+	  cat("  diffDataSet<-panel_diff(KoreaMacro, 1)  *NOTE:1=시계열데이터", "\n")
+	  cat("  diffDataSet<-panel_diff(Panel_Dataset, 3)  *NOTE:3=Repeating되는 기간", "\n")
+	  
     )}
-  
+
 df<-as.data.frame(AdataSet)
+
+if(T==1){
+Data_set_SE<-df
+lag_Data_set_SE<-dplyr::lag(Data_set_SE)
+Data_setALL_SE<-Data_set_SE - lag_Data_set_SE
+return(Data_setALL_SE)
+exit
+}
+
 n<-nrow(df)
 T<-T
 iteration <- (n/T)
