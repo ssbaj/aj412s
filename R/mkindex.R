@@ -6,16 +6,30 @@ if (base::missing(tmp_data)) {
     cat("  df<-as.data.frame(df) ", '\n')
     return(cat("  df<-mkindex(df)") ) }
 
-n<-nrow(tmp_data)
-index00=c()
 
-for(i in 1:n){
-index00=c(index00, i)
+df_variabl_names<-colnames(tmp_data)
+n_variables<-length(df_variabl_names)
+temp_count<-0
+
+for(i in 1:n_variables){
+  if(df_variabl_names[i] == c('index')) {temp_count<-1}
 }
 
-tmp_data<-cbind(tmp_data, index00)
+n<-nrow(tmp_data)
+index=c()
+
+for(i in 1:n){
+  index=c(index, i)
+}
+
+
+if(temp_count==0) { tmp_data<-cbind(tmp_data, index) }
+
+if(temp_count==1) { 
+  index00<-index
+  tmp_data<-cbind(tmp_data, index00) 
+  }
 
 return(tmp_data)
 
 }
-
