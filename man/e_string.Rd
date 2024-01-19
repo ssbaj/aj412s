@@ -30,6 +30,5 @@ How to use : e_string
 # gsub  
   Ex2<-gsub('경기도', 'GG', df$v2[i])  
   print(Ex2)  
-  
-
+}
 }
