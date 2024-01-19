@@ -29,9 +29,9 @@ find_outlier<-function(model_outlier, list_no=6, threshold=2){
   
   cat('# \033[1;32m-----------------------------  \033[0m', '\n')
   cat('\033[1;31m  사용법: find_outlier(model, list_no=6, threshold=qnorm(확률) ) \033[0m', '\n')
-  cat('\033[1;32m  abs(오차의 z값)이 threshold보다 큰 레코드가 Outlier \033[0m', '\n')
-  cat('\033[1;32m  abs(오차의 z값)을 나누는 threshold값: \033[0m' , threshold, '\n')
-  cat('\033[1;32m  abs(오차의 z값)이 threshold보다 큰 레코드의 갯수: \033[0m' , nrow(dataset1_arrange), '\n')
+  cat('\033[1;32m  |오차의 z값|이 threshold보다 큰 레코드가 Outlier \033[0m', '\n')
+  cat('\033[1;32m  |오차의 z값|을 나누는 threshold값: \033[0m' , threshold, '\n')
+  cat('\033[1;32m  |오차의 z값|이 threshold보다 큰 레코드의 갯수: \033[0m' , nrow(dataset1_arrange), '\n')
   colnames(dataset1_arrange)[1]<-c('Index')
   colnames(dataset1_arrange)[2]<-c('|z|')
   cat('\033[1;32m  Outlier를 순서대로 나열하면 ------  \033[0m', '\n')
