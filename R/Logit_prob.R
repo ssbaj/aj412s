@@ -3,7 +3,7 @@
 logit_prob <- function( LogitResult, my_input=NULL ){
 
   if (is.null(my_input)) {
-    cat("*** 인자 my_input에는 값이 전달되지 않았습니다. 기본값을 사용합니다. ", '\n')
+    cat("*** 각 변수들의 레코드 값을 지정하지 않았습니다. 기본값을 사용합니다. ", '\n')
 	cat("*** 연속형 변수는 20% 증가했을 경우를, 더미변수는 0->1로 되었을 경우의 확률입니다", '\n')
     my_input <- 20
   }
@@ -63,7 +63,7 @@ Return_variablenames<-function(LogitResult) {
 r=c()
 max.ylev<-2
 nvariables<-LogitResult$rank
-
+tmp_r=c()
 
 ## 상수항 및 중위수값을 r에 대입. 첫 번째 항에 1을 대입
 for(i in 1:nvariables){
@@ -71,9 +71,11 @@ if( ( nrow(unique(LogitResult$model[i])) > max.ylev )  ) { r=c(r, median(LogitRe
 else {r<-c(r, 0)} }
 r[1]<-1
 
+
 if( length(my_input)==1 ) { OriginData <- r } else{ OriginData<-my_input } 
 
 ## logit_prob <- function( LogitResult, my_input=c(1) )
+
 
 cat('*** Origin데이터: 더미변수=0, 연속형변수=중위수 => c(', OriginData, ')','\n') 
 cat('    Origin확률계산을 위한 첫 번째 입력값 1은 상수항을 의미함', '\n') 
@@ -87,19 +89,20 @@ variable_names<-Return_variablenames(LogitResult)
 for(i in 2:length(OriginData)){
    input<-OriginData
 
-if( length(my_input)==1 ) { OriginData <- r } else{ OriginData<-my_input } 
+if( length(my_input)==1 ) { OriginData <- r } else { OriginData<-my_input } 
 if( is.null(my_input) ) { OriginData <- r }
-
 
 ## 퍼센트 증가 케이스
 ## 각 열에서 unique한 숫자들이 몇 개 있는지 확인하는 절차
 ## 각 열에서 unique한 숫자가 2개이면 더미변수이므로 퍼센트 증가 대신, 0->1로 변경함
 if( ( length(my_input)==1 ) & ( nrow(unique(LogitResult$model[i])) > max.ylev ) )  {
-	input[i] <- (median(LogitResult$model[,i]))*(1 + my_input/100)  }
-    else {input[i]<-input[i]+1 }
+	input[i] <- (median(LogitResult$model[,i]))*(1 + my_input/100)  
+	tmp_r<-c(tmp_r, input[i])}
+    else {input[i]<-input[i]+1
+		  tmp_r<-c(tmp_r, input[i])
+		  }
 
-
-   ### 입력된 원자료에 1을 더한 자료 --------
+   ### 입력된 원자료에 20%를 더한 자료 --------
    확률계산자료<-as.data.frame(LogitResult$coef)
    확률계산자료<-cbind(확률계산자료, input)
    colnames(확률계산자료)[1]<-c('Result')
@@ -109,7 +112,7 @@ if( ( length(my_input)==1 ) & ( nrow(unique(LogitResult$model[i])) > max.ylev ) 
    tmp분모<- 1+exp(tmp)
    확률<-round( tmp분자/tmp분모*100, 3)
 
-   
+  
    ### 입력된 원자료 --------
    확률계산자료se<-as.data.frame(LogitResult$coef)
    확률계산자료se<-cbind(확률계산자료se, OriginData)
@@ -141,6 +144,12 @@ if( ( length(my_input)==1 ) & ( nrow(unique(LogitResult$model[i])) > max.ylev ) 
    cat('             ', ChPROB)
    cat('                           ', 확률, '\n')
 
-  }   }
+  }
+
+if(length(my_input)==1) {cat('     ------------------------------------------------------------------------------ ', '\n') }
+if(length(my_input)==1) {cat('     초기확률 계산 INPUT자료', r, '\n') }
+if(length(my_input)==1) {cat('     증가확률 계산 INPUT자료', 1, tmp_r, '\n') }
+
+  }
 
 

@@ -63,7 +63,7 @@ Return_variablenames<-function(ProbitResult) {
 r=c()
 max.ylev<-2
 nvariables<-ProbitResult$rank
-
+tmp_r=c()
 
 ## 상수항 및 중위수값을 r에 대입. 첫 번째 항에 1을 대입
 for(i in 1:nvariables){
@@ -94,8 +94,11 @@ if( is.null(my_input) ) { OriginData <- r }
 ## 각 열에서 unique한 숫자들이 몇 개 있는지 확인하는 절차
 ## 각 열에서 unique한 숫자가 2개이면 더미변수이므로 퍼센트 증가 대신, 0->1로 변경함
 if( ( length(my_input)==1 ) & ( nrow(unique(ProbitResult$model[i])) > max.ylev ) )  {
-	input[i] <- (median(ProbitResult$model[,i]))*(1 + my_input/100)  }
-    else {input[i]<-input[i]+1 }
+	input[i] <- (median(ProbitResult$model[,i]))*(1 + my_input/100)  
+	tmp_r<-c(tmp_r, input[i])}
+    else {input[i]<-input[i]+1
+		  tmp_r<-c(tmp_r, input[i])
+		  }
 
 
    ### 입력된 원자료에 1을 더한 자료 --------
@@ -104,7 +107,7 @@ if( ( length(my_input)==1 ) & ( nrow(unique(ProbitResult$model[i])) > max.ylev )
    colnames(확률계산자료)[1]<-c('Result')
    확률계산자료$temp<-확률계산자료$Result * 확률계산자료$input
    tmp<-sum( 확률계산자료[ ,3] )
-   확률<-round( pnorm(tmp)*100, 3)
+   확률<-round( pnorm(tmp)*100, 4)
 
    
    ### 입력된 원자료 --------
@@ -113,7 +116,7 @@ if( ( length(my_input)==1 ) & ( nrow(unique(ProbitResult$model[i])) > max.ylev )
    colnames(확률계산자료se)[1]<-c('Result')
    확률계산자료se$temp <- 확률계산자료se$Result*확률계산자료se$OriginData
    tmp<-sum( 확률계산자료se[ ,3] )
-   확률se<-round( pnorm(tmp)*100, 3)
+   확률se<-round( pnorm(tmp)*100, 4)
 
 
 
@@ -130,13 +133,20 @@ if( ( length(my_input)==1 ) & ( nrow(unique(ProbitResult$model[i])) > max.ylev )
    }
 
 
-   ChPROB<-round((확률-확률se) , 3)
+   ChPROB<-round((확률-확률se) , 4)
    
    cat('    ', variable_names[i-1] )
    cat('      ', 확률se)
    cat('             ', ChPROB)
    cat('                           ', 확률, '\n')
 
-  }   }
+  }   
+  
+if(length(my_input)==1) {cat('     ------------------------------------------------------------------------------ ', '\n') }
+if(length(my_input)==1) {cat('     초기확률 계산 INPUT자료', r, '\n') }
+if(length(my_input)==1) {cat('     증가확률 계산 INPUT자료', 1, tmp_r, '\n') }
+
+  
+  }
 
 
