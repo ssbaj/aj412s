@@ -11,7 +11,7 @@ ols_prob <- function( OlsResult, my_input=NULL ){
 
 if (base::missing(OlsResult)) {
 	cat("  더미는 1증가, 연속변수 20%증가: ols_prob( OlsResult)   ", '\n')
-	cat("  더미는 1증가, 연속변수 30%증가: logit_prob( OlsResult, 30)   ", '\n')
+	cat("  더미는 1증가, 연속변수 30%증가: ols_prob( OlsResult, 30)   ", '\n')
 	cat("  ------------------------------------------------------------   ", '\n')
 	cat("  독립변수에 임의의 값 지정: my_input<-c(1,0,2)  *NOTE: 1=constant, 0='value of X1', 2='value of X2' ", '\n')
 	cat("  ols_prob( OlsResult, my_input)   ", '\n')
@@ -80,7 +80,7 @@ cat('    Origin예측치를 위한 첫 번째 입력값 1은 상수항을 의미
 cat('*** 예측치계산1) 연속형변수값을 20% 증가시켰을 때의 예측치계산: ', 'ols_prob( OLS결과, 20 ) ', '\n')
 cat('*** 예측치계산2) 변수값 지정한 후 예측치 => ', 'ols_prob(OLS결과, c(1, 독립변수1값, 독립변수2값 ...) ) ', '\n')
 cat('*** ------------------------------------------------------------------------------    ', '\n')
-if(length(my_input)==1) {  cat('   ','독립변수', '  Origin예측치(%) ', ' 증가(%)=최종예측치-Origin예측치 ', ' 최종예측치 ', '\n')  }
+if(length(my_input)==1) {  cat('   ','독립변수', '  Origin예측치(%) ', ' 증가=최종예측치-Origin예측치 ', ' 최종예측치 ', '\n')  }
 
 variable_names<-Return_variablenames(OlsResult)
 
@@ -135,7 +135,7 @@ if( ( length(my_input)==1 ) & ( nrow(unique(OlsResult$model[i])) > max.ylev ) ) 
    cat('    ', variable_names[i-1] )
    cat('      ', 예측치se)
    cat('             ', ChPROB)
-   cat('                           ', 예측치, '\n')
+   cat('                 ', 예측치, '\n')
 
   }
 
