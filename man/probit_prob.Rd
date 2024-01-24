@@ -14,6 +14,6 @@ Calculating probability from probit
  
  확률계산2) 독립변수에 임의의 값 지정: my_input<-c(1,0,2)  *NOTE: 1=constant, 0='value of X1', 2='value of X2'  
  
- probit_prob( ProbitResult, 0, my_input)  
+ probit_prob( ProbitResult, my_input)  
 
 }
