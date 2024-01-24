@@ -78,8 +78,11 @@ cat('*** Origin데이터: 더미변수=0, 연속형변수=중위수 => c(', Orig
 cat('    Origin확률계산을 위한 첫 번째 입력값 1은 상수항을 의미함', '\n') 
 cat('*** 확률계산1) Origin확률계산 중 연속형변수값을 20% 증가시켰을 때의 확률계산: ', 'probit_prob( Probit결과, 20 ) ', '\n')
 cat('*** 확률계산2) 변수값 지정한 후 확률계산 => ', 'probit_prob(Probit결과, c(1, 독립변수1값, 독립변수2값 ...) ) ', '\n')
+cat('***              Return <-ols_prob(OLS결과, c(1, 독립변수1값, 독립변수2값...)) 최종확률이 return값으로 전달됨 ', '\n')
 cat('*** ------------------------------------------------------------------------------    ', '\n')
-if(length(my_input)==1) {  cat('   ','독립변수', '  Origin확률(%) ', ' 증가확률(%)=최종확률-Origin확률 ', ' 최종확률(%) ', '\n')  }
+if(length(my_input)==1) {  cat('   ','독립변수', '  Origin확률(%) ', ' 증가확률(%)=최종확률-Origin확률 ', ' 최종확률(%) ', '\n')
+		                   cat('*** ------------------------------------------------------------------------------    ', '\n')
+						}
 
 variable_names<-Return_variablenames(ProbitResult)
 
@@ -145,7 +148,7 @@ if( ( length(my_input)==1 ) & ( nrow(unique(ProbitResult$model[i])) > max.ylev )
 if(length(my_input)==1) {cat('     ------------------------------------------------------------------------------ ', '\n') }
 if(length(my_input)==1) {cat('     초기확률 계산 INPUT자료', r, '\n') }
 if(length(my_input)==1) {cat('     증가확률 계산 INPUT자료', 1, tmp_r, '\n') }
-
+if(length(my_input)>1) {return(확률se) }
   
   }
 
