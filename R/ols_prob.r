@@ -69,7 +69,7 @@ tmp_r=c()
 for(i in 1:nvariables){
 if( ( nrow(unique(OlsResult$model[i])) > max.ylev )  ) { r=c(r, median(OlsResult$model[, i])) }
 else {r<-c(r, 0)} }
-r[1]<-1
+r[1]<-1  ## 첫 번째 데이터는 종속변수의 중위수. 상수항 1로 교체한다
 
 
 if( length(my_input)==1 ) { OriginData <- r } else{ OriginData<-my_input } 

@@ -13,7 +13,11 @@ k8_dataset<-k0_dataset
 col_numbers<-ncol(k8_dataset)
 
 for(i in 1:col_numbers){
-if(class(k8_dataset[,i])=="character") {k8_dataset[,i]<-MYc2n(k8_dataset[,i])}
+if(class(k8_dataset[,i])=="character") {
+cat(i,'variable is character. After data mining, re-estimate correlation ', '\n')
+k8_dataset[,i]<-MYc2n(k8_dataset[,i])
+}
+
 k8_dataset[,i][k8_dataset[,i] == Inf]<-NA
 k8_dataset[,i][k8_dataset[,i] == -Inf]<-NA
 k8_dataset[,i][k8_dataset[,i] == '']<-NA
