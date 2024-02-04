@@ -14,7 +14,7 @@ col_numbers<-ncol(k8_dataset)
 
 for(i in 1:col_numbers){
 if(class(k8_dataset[,i])=="character") {
-cat(i,'variable is character. After data mining, re-estimate correlation ', '\n')
+cat(i,'variable is character. After data mining, re-estimate the correlation ', '\n')
 k8_dataset[,i]<-MYc2n(k8_dataset[,i])
 }
 
