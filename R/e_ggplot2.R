@@ -141,9 +141,10 @@ cat("  plotmeans(Gdata$inv~Gdata$firm)   ", '\n')
 cat("  plotmeans(Gdata$inv~Gdata$year)   ", '\n')
 cat("    ", '\n')
 cat("\033[1;31m#시계열분석 --------\033[0m ", '\n')
-cat("  autoplot(df[ ,c('gdpgrowth','unemp')], facets=TRUE)  # ggplot2패키지  ", '\n')
-cat("  forecast::ggseasonplot(df[,'gdp'], year.labels = TRUE, year.labels.left=TRUE)  # forecast패키지  ", '\n')
-cat("  forecast::ggsubseriesplot(Adata[,'gdp'])  # forecast패키지  ", '\n')
+cat("  AccountBalance <- ts(AccountBalance, start=c(2015,1), frequency=4) ", '\n')
+cat("  forecast::autoplot(AccountBalance[ ,c('Export','Profit')], facets=TRUE )  # forecast패키지  ", '\n') 
+cat("  forecast::ggseasonplot(AccountBalance[,'Import'], year.labels = TRUE, year.labels.left=TRUE)  # forecast패키지  ", '\n')
+cat("  forecast::ggsubseriesplot(AccountBalance[,'Export'])  # forecast패키지  ", '\n')
 cat("  ", '\n')
 
 }}
