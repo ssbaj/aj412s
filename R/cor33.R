@@ -1,7 +1,7 @@
 cor33 <- function(x, y, z=NULL, selecting_z=0){
  
  if (base::missing(x)) {
-	    return(cat("  cor3(df$conv, df$satprice, df$gender, 1) "))  }
+	    return(cat("  cor33(df$conv, df$satprice, df$gender, 1) "))  }
  
  temp<-cbind(x,y,z)
  temp<-as.data.frame(temp)
