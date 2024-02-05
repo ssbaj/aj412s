@@ -10,11 +10,11 @@ ols_pred <- function( OlsResult, my_input=NULL ){
 
 
 if (base::missing(OlsResult)) {
-	cat("  더미는 1증가, 연속변수 20%증가: ols_prob( OlsResult)   ", '\n')
-	cat("  더미는 1증가, 연속변수 30%증가: ols_prob( OlsResult, 30)   ", '\n')
+	cat("  더미는 1증가, 연속변수 20%증가: ols_pred( OlsResult)   ", '\n')
+	cat("  더미는 1증가, 연속변수 30%증가: ols_pred( OlsResult, 30)   ", '\n')
 	cat("  ------------------------------------------------------------   ", '\n')
 	cat("  독립변수에 임의의 값 지정: my_input<-c(1,0,2)  *NOTE: 1=constant, 0='value of X1', 2='value of X2' ", '\n')
-	cat("  ols_prob( OlsResult, my_input)   ", '\n')
+	cat("  ols_pred( OlsResult, my_input)   ", '\n')
 	return(cat("  ") ) }
 	
 
@@ -77,14 +77,15 @@ if( length(my_input)==1 ) { OriginData <- r } else{ OriginData<-my_input }
 
 cat('*** Origin데이터: 더미변수=0, 연속형변수=중위수 => c(', OriginData, ')','\n') 
 cat('    Origin예측치를 위한 첫 번째 입력값 1은 상수항을 의미함', '\n') 
-cat('*** 예측치계산1) 연속형변수값을 20% 증가시켰을 때의 예측치계산: ', 'ols_prob( OLS결과, 20 ) ', '\n')
-cat('*** 예측치계산2) 변수값 지정한 후 예측치 => ', 'ols_prob(OLS결과, c(1, 독립변수1값, 독립변수2값 ...) ) ', '\n')
-cat('*** Return <-ols_prob(OLS결과, c(1, 독립변수1값, 독립변수2값...)) 최종예측치가 return값으로 전달됨 ', '\n')
+cat('*** 예측치계산1) 연속형변수값을 20% 증가시켰을 때의 예측치계산: ', 'ols_pred( OLS결과, 20 ) ', '\n')
+cat('*** 예측치계산2) 변수값 지정한 후 예측치 => ', 'ols_pred(OLS결과, c(1, 독립변수1값, 독립변수2값 ...) ) ', '\n')
+cat('*** Return <-ols_pred(OLS결과, c(1, 독립변수1값, 독립변수2값...)) 최종예측치가 return값으로 전달됨 ', '\n')
 cat('*** ------------------------------------------------------------------------------    ', '\n')
 if(length(my_input)==1) {  cat('   ','독립변수', '  Origin예측치   ', ' 증가=최종예측치- ', ' 최종예측치 ', '\n')  
 						   cat('   ','            ', '            ', '    Origin예측치 ', '  ', '\n')  
 						   cat('*** ------------------------------------------------------------------------------    ', '\n')
 						}
+
 
 variable_names<-Return_variablenames(OlsResult)
 
