@@ -1,7 +1,7 @@
 find_outlier<-function(model_outlier, list_no=6, threshold=2){
   
   if (base::missing(model_outlier)) {
-    return(cat("  find_outlier(model, index컬럼번호, qnorm(확률)=2) "))}
+    return(cat("  find_outlier(분석결과, 리포팅되는 극단치 갯수(디폴트6개), qnorm(확률)=2) "))}
   
   n<-length(model_outlier$resid)
   tmp<-rep(NA,n)
@@ -28,13 +28,13 @@ find_outlier<-function(model_outlier, list_no=6, threshold=2){
   dataset1_arrange<-dataset1_arrange%>%arrange(desc(r11))
   
   cat('# \033[1;32m-----------------------------  \033[0m', '\n')
-  cat('\033[1;31m  사용법: find_outlier(model, list_no=6, threshold=qnorm(확률) ) \033[0m', '\n')
-  cat('\033[1;32m  |오차의 z값|이 threshold보다 큰 레코드가 Outlier \033[0m', '\n')
-  cat('\033[1;32m  |오차의 z값|을 나누는 threshold값: \033[0m' , threshold, '\n')
-  cat('\033[1;32m  |오차의 z값|이 threshold보다 큰 레코드의 갯수: \033[0m' , nrow(dataset1_arrange), '\n')
+  cat("\033[1;31m  사용법: find_outlier(분석결과, 리포팅되는 극단치 갯수(디폴트6개), threshold=qnorm(확률) ) \033[0m", '\n')
+  cat('\033[1;32m  절대값을 취한 |오차의 z값|이 threshold보다 큰 레코드가 Outlier \033[0m', '\n')
+  cat('\033[1;32m  절대값을 취한 |오차의 z값|을 나누는 threshold값: \033[0m' , threshold, '\n')
+  cat('\033[1;32m  절대값을 취한 |오차의 z값|이 threshold보다 큰 레코드의 갯수: \033[0m' , nrow(dataset1_arrange), '\n')
   colnames(dataset1_arrange)[1]<-c('Index')
   colnames(dataset1_arrange)[2]<-c('|z|')
-  cat('\033[1;32m  Outlier를 순서대로 나열하면 ------  \033[0m', '\n')
+  cat('\033[1;32m  Outlier를 절대값을 취해 큰 순서대로 나열하면 ------  \033[0m', '\n')
   
   colnames(dataset1_arrange)[1]<-c('Index')
   colnames(dataset1_arrange)[2]<-c('|z|')

@@ -1,11 +1,11 @@
-\name{e_string}
-\alias{e_string}
-\title{How to use : e_string}
+\name{e_substring}
+\alias{e_substring}
+\title{How to use : e_substring}
 \usage{
-e_string()
+e_substring()
 }
 \description{
-How to use : e_string
+How to use : e_substring
 }
 \examples{
 

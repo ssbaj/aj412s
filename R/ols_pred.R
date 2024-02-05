@@ -1,6 +1,6 @@
-## 활용법: ols_prob(로짓결과)
+## 활용법: ols_pred(OLS분석결과)
 
-ols_prob <- function( OlsResult, my_input=NULL ){
+ols_pred <- function( OlsResult, my_input=NULL ){
 
   if (is.null(my_input)) {
     cat("*** 각 변수들의 레코드 값을 지정하지 않았습니다. 기본값을 사용합니다. ", '\n')
@@ -145,7 +145,7 @@ if( ( length(my_input)==1 ) & ( nrow(unique(OlsResult$model[i])) > max.ylev ) ) 
 
 if(length(my_input)==1) {cat('     ------------------------------------------------------------------------------ ', '\n') }
 if(length(my_input)==1) {cat('     초기예측치 계산 INPUT자료', r, '\n') }
-if(length(my_input)==1) {cat('     증가예측치 계산 INPUT자료', 1, tmp_r, '\n') }
+if(length(my_input)==1) {cat('     증가예측치 계산 INPUT자료', '#', tmp_r, '\n') }
 if(length(my_input)>1) {return(예측치se) }
 
   }

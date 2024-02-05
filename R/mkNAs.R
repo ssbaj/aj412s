@@ -6,7 +6,7 @@ mkNAs<-function(tmp_data, col_number, NAs_number){
 
 if (base::missing(tmp_data)) {
     cat("  df<-as.data.frame(df) ", '\n')
-    return(cat("  df <- mkNAs(df, 9, 13)  *NOTE: 9=9th variable, 13=replace 13 NAs with 9th variable data   ") ) }
+    return(cat("  df <- mkNAs(df, 9, 13)  *NOTE: 9=9번째 변수, 13=9번 변수의 레코드를 랜덤하게 13개 골라서 NA로 치환시켜라   ") ) }
 
 tmp_data<-as.matrix(tmp_data)
 tmp_dataV2<-tmp_data

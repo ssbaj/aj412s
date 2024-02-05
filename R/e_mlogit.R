@@ -1,6 +1,6 @@
 e_mlogit<-function(explaining=0){
 if(explaining==0) {
-cat("## multinomal logit 분석 ------ ", '\n')
+cat("## multinomial logit 분석 ------ ", '\n')
 cat("  library(nnet); library(stargazer)  ", '\n')
 cat("  df<-BasicData  ", '\n')
 cat("  re<-multinom(debt3~car_conv+car_satprice+age+gender, data=df, maxit = 2000) ", '\n')

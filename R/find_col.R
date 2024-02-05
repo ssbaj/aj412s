@@ -1,7 +1,7 @@
 find_col<-function(DataSet, index_id){
 
   if (base::missing(DataSet)) {
-    return(cat("  find_colindex(BasicData, c('brand', 'dept')) " ))  }
+    return(cat("  find_colindex(BasicData, c('brand', 'satprice')) " ))  }
   
   tmp<-DataSet
   rm(DataSet)

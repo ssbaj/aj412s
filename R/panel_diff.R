@@ -2,9 +2,9 @@ panel_diff<-function(AdataSet, T){
    
 
 if (base::missing(AdataSet)) {
-	    cat("  diffDataSet<-panel_diff(Panel_Dataset, 1)  *NOTE: 1=시계열데이터  ", '\n')
-		cat("  diffDataSet<-panel_diff(Panel_Dataset, 3)  *NOTE: 3=Repeating되는 기간 ", '\n')
-		return(cat("  Data set에서 Character, Date 변수를 제거한 후 panel_diff사용 바람  ") )  }
+	    cat("  사용되는 Data set엔 numerical 변수만 있어야 합니다. 문자변수, 날짜변수는 제거 후 panel_diff를 사용하세요 ", '\n')
+		cat("  diffDataSet<-panel_diff(Panel_Dataset, 1)  *NOTE: 1=시계열데이터  ", '\n')
+		return( cat("  diffDataSet<-panel_diff(Panel_Dataset, 3)  *NOTE: 3=Repeating되는 기간 ", '\n') )  }
 
 df<-as.data.frame(AdataSet)
 
