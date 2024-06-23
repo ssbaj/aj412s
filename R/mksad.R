@@ -12,6 +12,44 @@ mksad<-function(df,  DATE_col,  data_col,  SeaMethod=1 , ma.method=5) {
 return(cat("            (2) 이동평균법 사용시, 3기간으로 하려면 ma.method=3 / 7기간은 ma.method=7 등등)", '\n'))
  }
 
+if (!require(dplyr)) {
+  install.packages("dplyr")
+}
+
+if (!require(seasonal)) {
+  install.packages("seasonal")
+}
+
+
+if (!require(forecast)) {
+  install.packages("forecast")
+}
+
+
+##-----------------------------------
+# 변수명을 컬럼 번호로 변경시키는 함수
+##------------------------------------
+find_col2<-function(DataSet, index_id ){
+  tmp_colnames<-colnames(DataSet)
+  n<-length(tmp_colnames)  # DataSet의 총변수 갯수
+  
+  for(i in 1:n){
+    if(index_id==tmp_colnames[i]) {return(as.numeric(i))}
+  }
+}
+
+##----------------------------------------
+# find_col2()를 사용해 컬럼번호 찾기
+if(is.numeric(DATE_col)==F) {DATE_col<-find_col2(df, DATE_col) }
+##----------------------------------------
+
+
+##----------------------------------------
+# find_col2()를 사용해 컬럼번호 찾기
+if(is.numeric(data_col)==F) {data_col<-find_col2(df, data_col) }
+##----------------------------------------
+
+
 library(dplyr)
 df<-as.data.frame(df)
 

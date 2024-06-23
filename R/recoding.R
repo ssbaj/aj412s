@@ -2,8 +2,27 @@ recoding<-function(name_dataset,  select_columns ) {
 
 if (base::missing(name_dataset)) {
         cat("  df<-as.data.frame(df)", '\n')
-        return( cat("  df<-recoding(df, 2)  *NOTE: Recoding values in the 2nd column of dataset ", '\n') )
+        return( cat("  df<-recoding(df, 변수명 또는 컬럼번호) ", '\n') )
     }
+
+##-----------------------------------
+# 변수명을 컬럼 번호로 변경시키는 함수
+##------------------------------------
+find_col2<-function(DataSet, index_id ){
+  tmp<-DataSet
+  rm(DataSet)
+  tmp_colnames<-colnames(tmp)
+  n<-length(tmp_colnames)  # DataSet의 총변수 갯수
+  
+  for(i in 1:n){
+    if(index_id==tmp_colnames[i]) {return(as.numeric(i))}
+  }
+}
+
+if(is.numeric(select_columns)==F) {select_columns<-find_col2(name_dataset, select_columns) }
+
+##----------------------------------------
+
 
 name_dataset<-as.data.frame(name_dataset)
 tmpx<-name_dataset[ , select_columns]

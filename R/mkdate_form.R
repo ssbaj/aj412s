@@ -2,8 +2,8 @@ mkdate_form<-function(df, ymdata ){
 
 if (base::missing(df)) {
 	    cat("  df<-as.data.frame(df) ", '\n')
-		cat("  Input: 2023.4 or 2023-4 // Output: DATE_form=2023-04-01    ", '\n')
-		return(cat("  df<-mkdate_form(df, 4=column of YEAR.MONTH ) ") )  }
+		cat("  Input: 2023.4 or 2023-4 or 2023/4  ===>  Output: DATE_form=2023-04-01    ", '\n')
+		return(cat("  df<-mkdate_form(df, 4=column of Year.Month ) ") )  }
 
 
 df<-as.data.frame(df)
@@ -35,10 +35,6 @@ df$DATE[i]<-change_ymdata1(df[,ymdata][i])
 else{
 df$DATE[i]<-change_ymdata2(df[,ymdata][i])
 } }
-
-
-
-
 
 df$DATE<-as.Date(df$DATE)
 return(df)

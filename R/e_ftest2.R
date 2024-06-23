@@ -3,9 +3,8 @@ if(explaining==0) {
 cat("library(jmv)", '\n')
 cat(" ", '\n')
 cat("# Two-Way ANOVA ", '\n')
-cat("  df<-BasicData", '\n')
 cat("# with(데이터셋, interaction.plot(독립변수1, 독립변수2, 종속변수, fun = mean, main = 'Interaction Plot'))", '\n')
-cat("  with(df, interaction.plot(  gender, satprice, fun = mean, main = 'Interaction Plot'))", '\n')
+cat("  with(df, interaction.plot(  gender, edu, satprice, fun = mean, main = 'Interaction Plot'))", '\n')
 cat("  df$gender<-as.factor(df$gender)", '\n')  # gender변수를 범주형변수로 지정
 cat("  df$brand<-as.factor(df$brand)", '\n')  # dept변수를 범주형변수로 지정
 cat(" ", '\n')

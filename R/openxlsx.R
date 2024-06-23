@@ -10,12 +10,15 @@ if (base::missing(datasetname)) {
 	}
 
 
+if (!require(readxl)) {
+  install.packages("readxl")
+}
 
 tryCatch({
 library(readxl)
 tmp.df<-read_excel(datasetname, skip=skip, col_names=header)
 }, error = function(e) {
-  cat("  # How to solve ERROR? ==> install.packages('readxl') ", '\n')
+  cat("  # How to solve ERROR? ==> 'readxl' will be installed automatically. ", '\n')
 })
 
 

@@ -1,14 +1,14 @@
 find_col<-function(DataSet, index_id){
   
   if (base::missing(DataSet)) {
-    return(cat("  find_colindex(BasicData, c('brand', 'satprice')) " ))  }
+    return(cat("  find_col(BasicData, c('brand', 'satprice')) " ))  }
   
   tmp<-DataSet
   rm(DataSet)
   
   tmp_colnames<-colnames(tmp)
   n<-length(tmp_colnames)  # DataSet의 총변수 갯수
-  index_n<-length(index_id)  # 연구자가 선택한 변수명들의 갯수
+  index_n<-length(index_id)  # 선택된 변수명들의 갯수
   index_n2<-index_n*2
   r=c()
   r2=c()

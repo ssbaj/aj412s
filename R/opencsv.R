@@ -7,9 +7,11 @@ if (base::missing(name_dataset)) {
     	cat("  # if there are variable names in the first line, header=T ", '\n')
        	cat("  # if 1st~8th lines are comments and you want to skip them, skip=8 ", '\n')
 	cat("", '\n')
-	cat("  df<-opencsv( 'KoreanFinance2018.csv', header=F, skip=0 ) ", '\n')
+	cat("  Adata<-opencsv( 'KoreanFinance2018.csv', header=F, skip=0 ) ", '\n')
 	return(cat("", '\n') )
 	}
+
+name_dataset[name_dataset==""]<-NA
 
 tmp.df<-read.csv(name_dataset, fileEncoding='CP949', encoding='UTF-8', header=header, skip=skip)
 return(tmp.df) }

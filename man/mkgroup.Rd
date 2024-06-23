@@ -19,7 +19,6 @@ Making grouping index variables
 
 # 또는 직접 입력도 가능함
   cn <- c(-0.36, 0.33, 0.78 )
-  Adata$edu2<-mkgroup(Adata$edu, cn)
-
+  Adata<-mkgroup(Adata, 'edu' OR 8, cn) # 8=컬럼번호
 
 }

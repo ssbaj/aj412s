@@ -1,18 +1,11 @@
-# How To Use:
-# quantile로 지정: cn<-quantile(df$edu, c(.25, .5, .75))
-# cn을 직접 지정하기: cn<-c(1000, 4000, 7000) ','\n')
-# df$edu2<-mkgroup(df$edu, 8th column, cn)
-
 mkgroup<-function(name_dataset, select_columns, CuttingNumber, sign=1) {
    
    if (base::missing(name_dataset)) {
-	    cat(" df<-mkgroup(df, 8, cn)   ", '\n')
-	    cat("    *NOTE: df=data, 8=8th variable, cn=Cutting Number, sign=1은 미만< ", '\n')
-	    cat("    *NOTE: cn<-c( 4, 6 ) or cn<-quantile(df$edu, c(.25, .5, .75)) ", '\n')
-		cat("    *NOTE: df[8]의 값이 1,2,3, ...,7,8이고, cn<-c( 4, 6 )이면 4미만=1, 6미만=2, 6이상=3 ", '\n')
-		cat(" df<-mkgroup(df, 8, cn, 2)  ", '\n')
-		cat("    *NOTE: df=data, 8=8th variable, cn=Cutting Number, sign=2는 이하<= ", '\n')
-		cat("    *NOTE: df[8]의 값이 1,2,3, ...,7,8이고, cn<-c( 4, 6 )이면 4이하=1, 6이하=2, 6초과=3 ", '\n')
+	    cat(" df<-mkgroup(df, '변수명' 또는 컬럼번호, cn)   ", '\n')
+	    cat("             data, '변수명' 또는 컬럼번호, cn=Cutting Number, 숫자가 없으면'<'  ", '\n')
+	    cat(" * ---------------------------------------------------------------------- *", '\n')
+		cat(" df<-mkgroup(df, '변수명' 또는 컬럼번호, cn, 2)  ", '\n')
+		cat("             data, '변수명' 또는 컬럼번호, cn=Cutting Number, 숫자가 2면'<='  ", '\n')
 		return(cat("      ") ) }
  
   c2n <- function(x_x01){ 
@@ -20,6 +13,24 @@ mkgroup<-function(name_dataset, select_columns, CuttingNumber, sign=1) {
      groups= sort(groups)
      tmp<-as.numeric(factor(x_x01, levels=groups))
 	 return(tmp) }
+
+
+##-----------------------------------
+# 변수명을 컬럼 번호로 변경시키는 함수
+##------------------------------------
+find_col2<-function(DataSet, index_id ){
+  tmp_colnames<-colnames(DataSet)
+  n<-length(tmp_colnames)  # DataSet의 총변수 갯수
+  
+  for(i in 1:n){
+    if(index_id==tmp_colnames[i]) {return(as.numeric(i))}
+  }
+}
+
+##----------------------------------------
+# find_col2()를 사용해 컬럼번호 찾기
+if(is.numeric(select_columns)==F) {select_columns<-find_col2(name_dataset, select_columns) }
+##----------------------------------------
 
   n0<-nrow(name_dataset[select_columns])
 
