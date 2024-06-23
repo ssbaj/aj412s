@@ -1,8 +1,8 @@
 scatmat<-function(..., nclass=NULL) {
 
 if (base::missing(...)) {
-    cat("  df<-as.data.frame(df with only numbers)", '\n')
-	return( cat("  scatmat(df) ", '\n') )
+	cat("  tmp<-Adata[, c('conv','satprice','age','edu','nfamily')] ", '\n')
+	return( cat("  scatmat(tmp) ", '\n') )
 }
 
 
