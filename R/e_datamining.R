@@ -1,6 +1,16 @@
 e_datamining<-function(explaining=0){
 
 if(explaining==0) {
+cat("   ", '\n')
+cat("\033[1;31m## 화면 스크롤 갯수 확대 & 미싱데이터 채우기 -------\033[0m ", '\n')
+cat("  print(tmp, n=9999)  ", '\n')
+cat("  options(max.print=9999)  ", '\n')
+cat("  options(dplyr.print_max=9999)  ", '\n')
+cat("  zoo::na.locf(df) \033[1;31m미싱데이터값을 이전 값으로 채우기\033[0m ", '\n')
+cat("   ", '\n')
+
+invisible(readline(prompt="Press [enter] to continue"))
+cat("   ", '\n')
 cat("\033[1;31m## CSV파일과 Excel파일 로딩하기 -------  \033[0m", '\n')
 cat("  library(aj412s) ", '\n')
 cat("  df<-opencsv('csv파일.csv', header=T, skip=1) \033[1;31m데이터프레임data.frame으로 저장\033[0m", '\n')
@@ -122,15 +132,6 @@ cat("  df<-mklog(df, 14) \033[1;31minc변수에 로그를 취해 log_inc생성\0
 cat("   ", '\n')
 cat("\033[1;31m## 문자 레코드를 숫자로 바꾸기 --------\033[0m ", '\n')
 cat("  df$brand2<-c2n(df$brand) ", '\n')
-cat("   ", '\n')
-
-invisible(readline(prompt="Press [enter] to continue"))
-cat("   ", '\n')
-cat("\033[1;31m## 화면 스크롤 갯수 확대 & 미싱데이터 채우기 -------\033[0m ", '\n')
-cat("  print(tmp, n=9999)  ", '\n')
-cat("  options(max.print=9999)  ", '\n')
-cat("  options(dplyr.print_max=9999)  ", '\n')
-cat("  zoo::na.locf(df) \033[1;31m미싱데이터값을 이전 값으로 채우기\033[0m ", '\n')
 cat("   ", '\n')
 
 invisible(readline(prompt="Press [enter] to continue"))
