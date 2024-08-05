@@ -1,5 +1,7 @@
 cor22<-function(k0_dataset, method='pearson'){
 
+options(warn = -1)
+
 if (base::missing(k0_dataset)) {
      cat("  Two variable correlation --> jmv::corrMatrix(df, vars=vars(donation, age))", '\n' )
 	 return(cat("  data.frame correlation --> cor22(df, method='pearson' or 'kendall' or 'spearman') "))}
@@ -111,7 +113,6 @@ cat("\033[1;34m  NA data is removed by using the 'complete.cases' command. \033[
 cat("\033[1;34m ------------------------  ", '\n')
 cat("         ", '\n')
 }
-
 
 return(MYcorrelation3)
 } 
