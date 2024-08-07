@@ -12,8 +12,9 @@ if (base::missing(dataset)) {
     cat("   bind_colname(dataset, selecting_variables, Any number except 0 )", '\n' )
     return(cat("   Print Output: \033[1;31m'V1','V15','V21'\033[0m ", '\n' ))}
   
-index<-dataset
-bindX<-function(index, tmp, indicator) {
+indexdataset<-dataset
+
+bindX<-function(indexdataset, tmp, indicator) {
     tmp <- gsub("\\s", "", tmp)
     rcount<-c()
     countchar<-nchar(tmp)
@@ -49,17 +50,18 @@ bindX<-function(index, tmp, indicator) {
         }
         
         if(imcounting>1) {
-          start <- end + 2; end <- start + countword[imcounting]-1
+          start <- end + 2
+		  end <- start + countword[imcounting]-1
         }
         
         sub_text<-substr(tmp, start, end)
         
         
         if(imcounting==Ncount2) {
-          sub_text<-paste0(index,"$",sub_text)
+          sub_text<-paste0(indexdataset,"$",sub_text)
         }
         else {
-          sub_text<-paste0(index,"$",sub_text,",  ")
+          sub_text<-paste0(indexdataset,"$",sub_text,",  ")
         }
         
         
@@ -97,15 +99,12 @@ bindX<-function(index, tmp, indicator) {
     
   }
   
-  output <- capture.output( bindX(index, tmp, indicator) )
+  output <- capture.output( bindX(indexdataset, tmp, indicator) )
   output<-gsub('"', '', output)
   output<-gsub(' ', '', output)
   output <- gsub("[\r\n]", "", output)
+  output <- gsub("\\[|\\]", "", output)
   output <- as.character(output)
   
-  output_countchar<-nchar(output)
-  output<-substr(output, 4, output_countchar)
-  
   return(output)
-}
-
+  }
