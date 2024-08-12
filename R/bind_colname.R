@@ -105,6 +105,7 @@ bindX<-function(indexdataset, tmp, indicator) {
   output <- gsub("[\r\n]", "", output)
   output <- gsub("\\[|\\]", "", output)
   output <- as.character(output)
+  output <- as.vector(output)
   
   return(output)
   }

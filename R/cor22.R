@@ -4,7 +4,8 @@ options(warn = -1)
 
 if (base::missing(k0_dataset)) {
      cat("  Two variable correlation --> jmv::corrMatrix(df, vars=vars(donation, age))", '\n' )
-	 return(cat("  data.frame correlation --> cor22(df, method='pearson' or 'kendall' or 'spearman') "))}
+	 cat("  Use dplyr to make data.set and run cor22: dplyr를 사용하면 변수명이 cor22로 전달됨  ", '\n' )
+	 return(cat("  cor22((df%>%select(var1, var2, ... ))), method='pearson' or 'kendall' or 'spearman') "))}
 
 if (!require(dplyr)) {
   install.packages("dplyr")
