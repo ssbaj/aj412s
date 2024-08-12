@@ -1,10 +1,13 @@
 ## 활용법: ols_pred(OLS분석결과)
 
-ols_pred <- function( OlsResult, my_input=NULL ){
+lm_pred <- function( OlsResult, my_input=NULL ){
 
   if (is.null(my_input)) {
-    cat("*** 각 변수들의 레코드 값을 지정하지 않았습니다. 기본값을 사용합니다. ", '\n')
+    cat("*** my_input으로 각 변수들의 레코드 값을 지정하지 않을 경우, 기본값을 사용함 ", '\n')
 	cat("*** 연속형 변수는 20% 증가했을 경우를, 더미변수는 0->1로 되었을 경우의 예측치입니다", '\n')
+	cat("*** my_input으로 각 변수들의 레코드 값을 지정해서 예측치를 얻는 방법:  ", '\n')
+	cat("*** my_input<-c(1(상수항), 독립변수1의 값, 독립변수2의 값 ... 독립변수값을 지정)", '\n')
+	cat("*** lm_pred(분석결과, my_input)  ", '\n')
     my_input <- 20
   }
 
