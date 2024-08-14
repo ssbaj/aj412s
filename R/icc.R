@@ -9,6 +9,6 @@ if (base::missing(modelxxxx)) {
 cat(" ", '\n')
   cat("\033[1;31m  # ICC for (1|id) -------------------\033[0m ", '\n')
   tmp<-data.frame( VarCorr(modelxxxx) )
-  tmp[1,4]/(tmp[1,4]+tmp[2,4])
-cat(" ", '\n')
+  tmp_est <- tmp[1,4]/(tmp[1,4]+tmp[2,4])
+cat("ICC = ",tmp_est, '\n')
 }
