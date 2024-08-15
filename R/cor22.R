@@ -1,4 +1,4 @@
-cor22<-function(k0_dataset, method='pearson', digitsxx=2){
+cor22<-function(k0_dataset, digits=2, method='pearson'){
 
 options(warn = -1)
 
@@ -35,7 +35,7 @@ k8_dataset[,i][k8_dataset[,i] == '']<-NA
 
 k8_dataset<-k8_dataset[complete.cases(k8_dataset), ]
 
-MYcorrelation1<-round( cor(k8_dataset, method=method) , digitsxx)
+MYcorrelation1<-round( cor(k8_dataset, method=method) , digits)
 MYcorrelation2<-MYcorrelation1
 MYcorrelation2[upper.tri(MYcorrelation1)] <- ''
 MYcorrelation3<-as.data.frame(MYcorrelation2)
@@ -87,7 +87,7 @@ k8_dataset[,i][k8_dataset[,i] == '']<-NA
 
 k8_dataset<-k8_dataset[complete.cases(k8_dataset), ]
 
-MYcorrelation1<-round( cor(k8_dataset, method=method) , digitsxx)
+MYcorrelation1<-round( cor(k8_dataset, method=method) , digits)
 MYcorrelation2<-MYcorrelation1
 MYcorrelation2[upper.tri(MYcorrelation1)] <- ''
 MYcorrelation3<-as.data.frame(MYcorrelation2)
