@@ -1,6 +1,7 @@
 #  How to use moonbook and ztable
 e_ztable<-function(explaining=0){
 if(explaining==0) {
+options(ztable.type='viewer')
 cat("  library(moonBook); library(ztable) ", '\n')
 cat("  ", '\n')
 cat("  options(ztable.type='viewer')  ", '\n')

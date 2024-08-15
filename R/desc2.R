@@ -1,6 +1,8 @@
 ## 모든 변수들의 평균/표준편차/변동계수 등을 구하는 함수
 
-desc2<-function(A0data){
+desc2<-function(A0data, digitx=2){
+options(scipen=100)
+options(digits=digitx)
 
 if (base::missing(A0data)) {
 	    return(cat("  desc2(df) "))  }
@@ -53,14 +55,14 @@ for(ix00 in 1:nc){
 t_nX<-sum( !is.na(A0data[,ix00]) )
 t_NAX <- sum( is.na(A0data[,ix00]) )
 t_median<-median(A0data[,ix00], na.rm=T)
-t_mean<-mean(A0data[,ix00], na.rm=T)
+t_mean<-round( mean(A0data[,ix00], na.rm=T), digitx)
 t_sd<-sd(A0data[,ix00], na.rm=T)
 t_14<-quantile(A0data[,ix00], c(.25), na.rm=T)
 t_24<-quantile(A0data[,ix00], c(.5), na.rm=T)
 t_34<-quantile(A0data[,ix00], c(.75), na.rm=T)
 t_min<-min(A0data[,ix00], na.rm=T)
 t_max<-max(A0data[,ix00], na.rm=T)
-t_sm<-sd(A0data[,ix00], na.rm=T)/mean(A0data[,ix00], na.rm=T)
+t_sm<- round( sd(A0data[,ix00], na.rm=T)/mean(A0data[,ix00], na.rm=T) , digitx)
 
 r_nX<-c(r_nX, t_nX)
 r_NAX<-c(r_NAX, t_NAX)
@@ -119,6 +121,3 @@ colnames(Bdata)[11] <- c('  St.Dev/Mean')
 
 return(Bdata)
 }
-
-
-
