@@ -10,6 +10,6 @@ Converting character into numbers
 \examples{
 
 ## Full version: df<-df[complete.cases(df), ]
-## Short version: df<-comp22(df)
+## Short version: df<-comp22(df)  
 
 }

@@ -15,7 +15,6 @@ statetransition <- function(Adata){
 	cat("  \033[1;31m* 주의: df2는 A1과 A2처럼 2개의 변수만 포함하고, data.frame형태로, A1과 A2는 numeric으로 \033[0m",'\n')
 	cat("    df<-as.data.frame(cbind(A0,A1,A2)) ",'\n')
 	cat("    df2<-df[,c(2:3)] ",'\n')
-	cat("    df2<-lapply(df2, as.numeric)  ",'\n')
 	cat("  \033[1;31m* 주의: lapply 사용 후, 반드시 as.data.frame으로 data.frame형식을 지정해야 에러가 없음 \033[0m ",'\n')
 	cat("    df2<-as.data.frame(df2)  ",'\n')
 	cat("    tmp <- statetransition(df2)  ",'\n')
@@ -37,6 +36,8 @@ statetransition <- function(Adata){
     n<-nrow(Adata)
     ## Transition매트릭스 만들기
     Tmat <- matrix(0, nrow=Nrange, ncol=Nrange)
+	Tmat<-as.data.frame(Tmat)
+	print(Tmat)
 	for (i in 1:n) {
     Tmat[ Adata[,1][i], Adata[,2][i] ] <- Tmat[ Adata[,1][i], Adata[,2][i] ] + 1
     }
