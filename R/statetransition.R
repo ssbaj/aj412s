@@ -37,7 +37,7 @@ statetransition <- function(Adata){
     ## Transition매트릭스 만들기
     Tmat <- matrix(0, nrow=Nrange, ncol=Nrange)
 	Tmat<-as.data.frame(Tmat)
-	print(Tmat)
+
 	for (i in 1:n) {
     Tmat[ Adata[,1][i], Adata[,2][i] ] <- Tmat[ Adata[,1][i], Adata[,2][i] ] + 1
     }
