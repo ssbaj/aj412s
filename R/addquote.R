@@ -95,13 +95,11 @@ addquote<-function(variablenames) {
     }
   }
     
-    output <- capture.output( bindX(indexdataset, tmp, indicator) )
+    output <- bindX(indexdataset, tmp, indicator)
     output<-gsub('"', '', output)
     output<-gsub(' ', '', output)
     output <- gsub("[\r\n]", "", output)
     output <- gsub("\\[|\\]", "", output)
-    output <- as.character(output)
-    output <- as.vector(output)
     cat( output, '\n' )
     
   }
