@@ -1,6 +1,7 @@
 e_ggplot1<-function(explaining=0){
 
 if(explaining==0) {
+cat("\014")
 cat("\033[1;31m # ---- 산포도 with scatr -------------------\033[0m ", '\n')
 cat("\033[1;31m ## 막대그래프: 변수 1개 -------------------------------------- \033[0m    ", '\n')
 cat(" library(aj412s); library(dplyr); library(ggplot2); library(ggthemes)   ", '\n')
