@@ -1,9 +1,9 @@
 mkdum <- function(name_dataset, select_columns) {
 
 if (base::missing(name_dataset)) {
-    cat("  df<-as.data.frame(df)", '\n')
-	cat("  명령문1: df<-mkdum(df, '변수명') ", '\n')
-	return( cat("  또는, 명령문2: df<-mkdum(df, 2)  *NOTE: making dummies for brand(2nd column of dataset) ", '\n') )
+    cat("  Adata<-as.data.frame(Adata)", '\n')
+	cat("  명령문1: Adata<-mkdum(Adata, '변수명') ", '\n')
+	return( cat("  또는, 명령문2: Adata<-mkdum(Adata, 2)  *NOTE: making dummies for brand(2nd column of dataset) ", '\n') )
 }
 
 ##-----------------------------------
