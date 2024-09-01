@@ -3,14 +3,16 @@
 mksad<-function(df,  DATE_col,  data_col,  SeaMethod=1 , ma.method=5) {
 
  if (base::missing(df)) {
-	    cat("  # Install.packages(c('dplyr', 'seasonal', 'forecast'))  ", '\n')
-        cat("  방법1) x11으로 계절조정: df<-mksad(df, DATE컬럼번호, data컬럼번호) ", '\n') 
-        cat("  방법2) 이동평균법으로 seasonal adjust  옵션 지정 ----------  ", '\n') 
-        cat("        5기간 이동평균: df<-mksad(df, DATE컬럼번호, data컬럼번호,  2  ) ", '\n')
-        cat("        5기간 외의 이동평균: df<-mksad(df, DATE컬럼번호, data컬럼번호,  2 , ma.method=이동평균_기간/디폴트_5기간 ) ", '\n')
+	    cat("\033[1;31m  # 시계열 자료의 계절조정 ------------- \033[0m ", '\n')
+        cat("\033[1;31m  방법1) x11으로 계절조정: df<-mksad(df, 'DATE변수명', 'data변수명') \033[0m ", '\n') 
+        cat("         또는, x11으로 계절조정: df<-mksad(df, DATE컬럼번호, data컬럼번호) ", '\n') 
+        cat("\033[1;31m  방법2) 이동평균법으로 seasonal adjust  옵션 지정 하기 ---------- \033[0m ", '\n') 
+        cat("         5기간 이동평균: df<-mksad(df, 'DATE변수명', 'data변수명',  2  ) ", '\n')
+        cat("         5기간 외의 이동평균: df<-mksad(df, 'DATE변수명', 'data변수명',  2 , ma.method=이동평균_기간/디폴트_5기간 ) ", '\n')
         cat("            (1) adjusting.method의 디폴트는 1(=x11방법), 2(=이동평균법) ", '\n')
-return(cat("            (2) 이동평균법 사용시, 3기간으로 하려면 ma.method=3 / 7기간은 ma.method=7 등등)", '\n'))
+return(cat("            (2) 이동평균법 사용시, 3기간으로 하려면 ma.method=3 / 7기간은 ma.method=7 ) ", '\n'))
  }
+
 
 if (!require(dplyr)) {
   install.packages("dplyr")
@@ -87,10 +89,11 @@ return(df)
 if(SeaMethod == 2){
 # 방법2: data_5mv()는 forecast의 ma()와 동일한 명령문
 #  library(forecast) 
-#  ma(df[,'gdp'], 4)      
+#  ma(df[,'gdp'], 4)
+cat('Period for moving average:', ma.method, '\n' )
 ma.method<-ma.method-1
-ma5_sa <- forecast::ma(target_variable, ma.method)
-df<-cbind(df, ma5_sa)
+ma_sa <- forecast::ma(target_variable, ma.method)
+df<-cbind(df, ma_sa)
 return(df)
 }
 
