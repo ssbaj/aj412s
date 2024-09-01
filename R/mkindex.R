@@ -30,6 +30,10 @@ if(temp_count==1) {
   tmp_data<-cbind(tmp_data, index00) 
   }
 
+suppressPackageStartupMessages(library("dplyr"))
+tmp_data <- tmp_data %>% relocate(index)
+colnames(tmp_data)[1]<-"INDEX"
+
 return(tmp_data)
 
 }
