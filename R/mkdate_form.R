@@ -37,6 +37,9 @@ df$DATE[i]<-change_ymdata2(df[,ymdata][i])
 } }
 
 df$DATE<-as.Date(df$DATE)
+suppressPackageStartupMessages(library("dplyr"))
+df <- df%>%relocate(DATE)
+
 return(df)
 }
 

@@ -90,6 +90,9 @@ df<-cbind(df, DATE)
 }
 # yearly data END --------------------------
 
+suppressPackageStartupMessages(library("dplyr"))
+df <- df%>%relocate(DATE)
+
 return(df)
 }
 

@@ -24,6 +24,9 @@ df$DATE[i]<-paste0( df[,ydata][i], '-',df[,mdata][i], '-01', sep='')
 
 df$DATE<-as.Date(df$DATE)
 
+suppressPackageStartupMessages(library("dplyr"))
+df <- df%>%relocate(DATE)
+
 return(df)
 
 }
