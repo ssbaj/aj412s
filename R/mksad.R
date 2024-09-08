@@ -4,6 +4,7 @@ mksad<-function(df,  DATE_col,  data_col,  SeaMethod=1 , ma.method=5) {
 
  if (base::missing(df)) {
 	    cat("\033[1;31m  # 시계열 자료의 계절조정 ------------- \033[0m ", '\n')
+		cat("\033[1;32m  # Quarterly 인지 Monthly 데이터인지는 DATE값을 보고 자동 판독함 \033[0m ", '\n')
         cat("\033[1;31m  방법1) x11으로 계절조정: df<-mksad(df, 'DATE변수명', 'data변수명') \033[0m ", '\n') 
         cat("         또는, x11으로 계절조정: df<-mksad(df, DATE컬럼번호, data컬럼번호) ", '\n') 
         cat("\033[1;31m  방법2) 이동평균법으로 seasonal adjust  옵션 지정 하기 ---------- \033[0m ", '\n') 
