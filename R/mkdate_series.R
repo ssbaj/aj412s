@@ -4,7 +4,8 @@ if (base::missing(df)) {
 	    cat("  df<-as.data.frame(df) ", '\n')
 		cat("  Input: 연도=2015, start_m=11 / start_m=0(Yearly DATA),", '\n')
 		cat("                    연간자료: mq=0 / 분기별자료: mq=4 / 월별자료: mq=12 ", '\n')
-		cat("  df<-mkdate_series(df, 시작연도:2015)   ", '\n')
+		cat("  YEAR: df<-mkdate_series(df, 2015)   ", '\n')
+		cat("  Quarter: df<-mkdate_series(df, 2015, start_m=3/6/9/12, mq=4)   ", '\n')
 		return( cat("  df<-mkdate_series(df, 시작연도:2015, 시작달:11, 월자료:12)   ", '\n') )  
 		}
 
@@ -46,9 +47,17 @@ tmp2[i]<-paste0('0', tmp2[i], sep='')
 
 if(start_m>0 & mq==4) {
 	for(i in 1:n){
-		if(start_m==10) 
+
+if( (start_m != 3) & (start_m !=6 ) & (start_m != 9) & (start_m!=12) ) {
+	cat(' ', '\n')
+	cat('  Starting month should be one of 3, 6, 9, 12. ', '\n')
+	cat(' ', '\n')
+	break
+}
+		
+		if(start_m==12) 
 			{tmp2[i]<-start_m
-			 start_m<-1
+			 start_m<-3
 			 tmp1[i]<-start_y
 			 start_y<-start_y+1}
 		else{
