@@ -7,7 +7,7 @@ addquote<-function(variablenames) {
     cat("   addquote(variablenames )", '\n' )
     return(cat("   Print Output: \033[1;31m'V1','V15','V21'\033[0m ", '\n' ))}
   
-  indicator<-888 # anynumber except0
+  indicator<-888 # anynumber except 0
   indexdataset<-"Kdata"
   tmp<-variablenames
   
@@ -19,6 +19,7 @@ addquote<-function(variablenames) {
     counter_i <- 0
     tmp
     
+	# 콤마로 구분되는 단어의 갯수를 카운팅하는 코드
     nword<-function(tmp){
       countchar<-nchar(tmp)
       for(i in 1:countchar){
@@ -93,14 +94,16 @@ addquote<-function(variablenames) {
       }
       return(r3)
     }
-  }
+	
+  } # bindX함수 끝
     
-    output <- bindX(indexdataset, tmp, indicator)
+	output <- bindX(indexdataset, tmp, indicator)
     output<-gsub('"', '', output)
     output<-gsub(' ', '', output)
     output <- gsub("[\r\n]", "", output)
     output <- gsub("\\[|\\]", "", output)
     cat( output, '\n' )
+	return(output)
     
   }
   
