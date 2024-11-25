@@ -103,7 +103,6 @@ addquote<-function(variablenames) {
     output <- gsub("[\r\n]", "", output)
     output <- gsub("\\[|\\]", "", output)
     cat( output, '\n' )
-	return(output)
-    
+	    
   }
   
