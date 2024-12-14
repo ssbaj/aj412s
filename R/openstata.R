@@ -1,12 +1,12 @@
-# Loading SPSS file -- sav files
+# Loading Stata file -- dta files
 
-opensav<-function(datasetname, skip=0, header=T) {
+openstata<-function(datasetname, skip=0, header=T) {
 
   if (base::missing(datasetname)) {
     cat("", '\n')
-    cat("  # It does not need header option. It loads SPSS dataset files.", '\n')
+    cat("  # It does not need header option. It loads Stata dataset files.", '\n')
     cat("  # If 1st~8th lines are comments and you want to skip them, skip=8. ", '\n')
-    cat("    df<-opensav('DATA2.sav') OR, df<-opensav( 'DATA2.sav', skip=8 ) ", '\n')
+    cat("    df<-opendta('stata_data.dta') OR, df<-opensav( 'stata_data.dta', skip=8 ) ", '\n')
     cat(" ", '\n')
     cat("  # How to make variable labels ------------------------", '\n')
     cat("    library(labelled) ", '\n')
@@ -20,8 +20,6 @@ opensav<-function(datasetname, skip=0, header=T) {
   }
 
 library(haven)
-tmp<-read_sav(datasetname, skip=skip)
-
-  return(tmp)
+tmp<-read_dta(datasetname, skip=skip)
+return(tmp)
 }
-

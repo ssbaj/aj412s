@@ -1,8 +1,8 @@
-\name{opensav}
-\alias{opensav}
-\title{Loading sav files}
+\name{openspss}
+\alias{openspss}
+\title{Loading SPSS files}
 \usage{
-opensav()
+openspss()
 }
 \description{
 Loading sav files

@@ -1,7 +1,7 @@
-recolnames<-function(name_dataset ) {
+renaming<-function(name_dataset ) {
 
 if (base::missing(name_dataset)) {
-        return( cat("  Adata<-recolnames(Adata)", '\n') )
+        return( cat("  Adata<-renaming(Adata)", '\n') )
     }
 
 name_dataset<-as.data.frame(name_dataset)

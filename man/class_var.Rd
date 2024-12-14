@@ -1,8 +1,8 @@
-\name{class_col}
-\alias{class_col}
+\name{class_var}
+\alias{class_var}
 \title{Presenting the characteristics of variables}
 \usage{
-class_col()
+class_var()
 }
 \description{
 Presenting the characteristics of variables
@@ -11,6 +11,6 @@ Presenting the characteristics of variables
 
 library(aj412s)
 df<-opencsv('Data20_Mroz.csv', header=T)
-class_col(df)
+class_var(df)
 
 }
