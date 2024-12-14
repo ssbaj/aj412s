@@ -1,6 +1,6 @@
 ## 모든 변수들의 평균/표준편차/변동계수 등을 구하는 함수
 
-desc2<-function(A0data, digitx=2){
+desc2<-function(A0data, digitx=3){
 options(scipen=100)
 options(digits=digitx)
 
