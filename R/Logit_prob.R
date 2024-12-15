@@ -166,7 +166,7 @@ if( ( length(my_input)==1 ) & ( nrow(unique(LogitResult$model[i])) > max.ylev ) 
   }
 
 if(length(my_input)==1) {cat('     ------------------------------------------------------------------------------ ', '\n') }
-if(length(my_input)==1) {cat('     초기확률 계산 INPUT자료', r, '\n') }
+if(length(my_input)==1) {cat('     기본확률 계산 INPUT자료', r, '\n') }
 if(length(my_input)==1) {cat('     증가확률 계산 INPUT자료', 1, tmp_r, '\n') }
 if(length(my_input)>1) {return(확률se) }
   }
