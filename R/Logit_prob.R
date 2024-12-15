@@ -152,7 +152,7 @@ if( ( length(my_input)==1 ) & ( nrow(unique(LogitResult$model[i])) > max.ylev ) 
    cat('    ' , '\n')
    cat('*** 확률(%):', 확률se, '\n')
    cat('*** ------------------------------------------------------------------------------ ', '\n')
-   # break  ... break가 불필요한 것으로 판단되어 샵으로 처리함
+   break
    }
 
 
