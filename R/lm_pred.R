@@ -13,11 +13,11 @@ lm_pred <- function( OlsResult, my_input=NULL ){
 
 
 if (base::missing(OlsResult)) {
-	cat("  더미는 1증가, 연속변수 20%증가: ols_pred( OlsResult)   ", '\n')
-	cat("  더미는 1증가, 연속변수 30%증가: ols_pred( OlsResult, 30)   ", '\n')
+	cat("  더미는 1증가, 연속변수 20%증가: lm_pred( OlsResult)   ", '\n')
+	cat("  더미는 1증가, 연속변수 30%증가: lm_pred( OlsResult, 30)   ", '\n')
 	cat("  ------------------------------------------------------------   ", '\n')
 	cat("  독립변수에 임의의 값 지정: my_input<-c(1,0,2)  *NOTE: 1=constant, 0='value of X1', 2='value of X2' ", '\n')
-	cat("  ols_pred( OlsResult, my_input)   ", '\n')
+	cat("  lm_pred( OlsResult, my_input)   ", '\n')
 	return(cat("  ") ) }
 	
 
@@ -72,7 +72,7 @@ tmp_r=c()
 for(i in 1:nvariables){
 if( ( nrow(unique(OlsResult$model[i])) > max.ylev )  ) { r=c(r, median(OlsResult$model[, i])) }
 else {r<-c(r, 0)} }
-r[1]<-1  ## 첫 번째 데이터는 종속변수의 중위수. 상수항 1로 교체한다
+r[1]<-1  ## 첫 번째 데이터는 상수항 1로 교체한다
 
 
 if( length(my_input)==1 ) { OriginData <- r } else{ OriginData<-my_input } 

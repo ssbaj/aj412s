@@ -3,17 +3,31 @@
 logit_prob <- function( LogitResult, my_input=NULL ){
 
   if (is.null(my_input)) {
-    cat("*** 각 변수들의 레코드 값을 지정하지 않았습니다. 기본값을 사용합니다. ", '\n')
-	cat("*** 연속형 변수는 20% 증가했을 경우를, 더미변수는 0->1로 되었을 경우의 확률입니다", '\n')
-    my_input <- 20
+    cat("*** logit결과로 확률계산을 위해 다음의 default가 적용됩니다. ", '\n')
+	cat("*** 기본 확률 계산을 위해 더미변수는 0으로, 연속형변수는 중위수를 할당해 기본 확률을 계산합니다. ", '\n')
+	cat("*** 증가 확률 계산 시 모든 변수들은 기본 확률 계산에 사용된 값이 변수에 할당되며,  ", '\n')
+	cat("*** 다만 왼쪽에 기록된 변수명의 변수값만 다음과 같이 변합니다", '\n')
+	cat("*** 더미변수는 0->1로, 연속형 변수는 default로 할당된 중위수가 20% 증가했을 때의 확률입니다", '\n')
+	my_input <- 20
   }
 
 
+
 if (base::missing(LogitResult)) {
-	cat("  더미는 1증가, 연속변수 1증가: logit_prob( LogitResult)   ", '\n')
-	cat("  더미는 1증가, 연속변수 30%증가: logit_prob( LogitResult, 30)   ", '\n')
-	cat("  ------------------------------------------------------------   ", '\n')
-	cat("  독립변수에 임의의 값 지정: my_input<-c(1,0,2)  *NOTE: 1=constant, 0='value of X1', 2='value of X2' ", '\n')
+    cat("  Default ------------------------------------------------------------   ", '\n')
+	cat("*** logit결과로 확률계산을 위해 다음의 default가 적용됩니다. ", '\n')
+	cat("*** 기본 확률 계산을 위해 더미변수는 0으로, 연속형변수는 중위수를 할당해 기본 확률을 계산합니다. ", '\n')
+	cat("*** 증가 확률 계산 시 모든 변수들은 기본 확률 계산에 사용된 값이 변수에 할당되며,  ", '\n')
+	cat("*** 다만 왼쪽에 기록되는 변수명의 변수값만 다음과 같이 변합니다", '\n')
+	cat("*** 더미변수는 0->1로, 연속형 변수는 default로 할당된 중위수가 20% 증가했을 때의 확률입니다", '\n')
+	cat("  Define1 ------------------------------------------------------------   ", '\n')
+	cat("  Default: 더미는 0->1, 연속변수는 중위수->20%증가: logit_prob( LogitResult)   ", '\n')
+	cat("  Define1: 더미는 0->1, 연속변수의 default가 중위수이고 중윗값이 30%증가했을 확률을 구하려면  ", '\n')
+	cat("           다음의 명령문을 사용: logit_prob( LogitResult, 30)   ", '\n')
+	cat("  Define2 ------------------------------------------------------------   ", '\n')
+	cat("  Default: 더미는 0->1, 연속변수는 중위수->20%증가: logit_prob( LogitResult)   ", '\n')
+	cat("  Define2: 독립변수에 임의의 값 지정: ", '\n')
+	cat("           my_input<-c(1,0,2)  *NOTE: 1=상수항, 0='독립변수1의 값', 2='독립변수2의 값' ", '\n')
 	cat("  logit_prob( LogitResult, my_input)   ", '\n')
 	return(cat("  ") ) }
 	
@@ -77,10 +91,10 @@ if( length(my_input)==1 ) { OriginData <- r } else{ OriginData<-my_input }
 ## logit_prob <- function( LogitResult, my_input=c(1) )
 
 
-cat('*** Origin데이터: 더미변수=0, 연속형변수=중위수 => c(', OriginData, ')','\n') 
-cat('    Origin확률계산을 위한 첫 번째 입력값 1은 상수항을 의미함', '\n') 
+cat('*** Origin확률: 더미변수=0, 연속형변수=중위수 대입해 확률계산 ','\n') 
 cat('*** 확률계산1) Origin확률계산 중 연속형변수값을 20% 증가시켰을 때의 확률계산: ', 'logit_prob( Logit결과, 20 ) ', '\n')
 cat('*** 확률계산2) 변수값 지정한 후 확률계산 => ', 'logit_prob(Logit결과, c(1, 독립변수1값, 독립변수2값 ...) ) ', '\n')
+cat('               확률계산을 위한 첫 번째 입력값 1은 상수항을 의미함', '\n') 
 cat('*** Return <-logit_prob(Logit결과, c(1, 독립변수1값, 독립변수2값...)) 최종확률이 return값으로 전달됨 ', '\n')
 cat('*** ------------------------------------------------------------------------------    ', '\n')
 if(length(my_input)==1) {  cat('   ','독립변수', '  Origin확률(%) ', ' 증가확률(%)=최종확률-Origin확률 ', ' 최종확률(%) ', '\n')
@@ -130,13 +144,15 @@ if( ( length(my_input)==1 ) & ( nrow(unique(LogitResult$model[i])) > max.ylev ) 
    if(length(my_input)>1) {
    m_count<-length(my_input)
    variable_names2<-c('Intercept', variable_names)
+   
    for( m in 1:m_count) {
    cat(  variable_names2[m] , "=" , my_input[m]  , "; ")
    }
+   
    cat('    ' , '\n')
    cat('*** 확률(%):', 확률se, '\n')
    cat('*** ------------------------------------------------------------------------------ ', '\n')
-   break
+   # break  ... break가 불필요한 것으로 판단되어 샵으로 처리함
    }
 
 
