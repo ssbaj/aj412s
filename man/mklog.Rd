@@ -15,7 +15,7 @@ tmp<-mklog(dataset, nth variable)
 EXAMPLE:
 library(aj412s)
 df<-BasicData
-df<-mklog(df, 'satprice' or nth column number)
-df<-mklog(df, 'satprice')
+
+df<-mklog(df, satprice)
 
 }

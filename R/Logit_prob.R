@@ -11,8 +11,6 @@ logit_prob <- function( LogitResult, my_input=NULL ){
 	my_input <- 20
   }
 
-
-
 if (base::missing(LogitResult)) {
     cat("  Default ------------------------------------------------------------   ", '\n')
 	cat("*** logit결과로 확률계산을 위해 다음의 default가 적용됩니다. ", '\n')

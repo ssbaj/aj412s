@@ -16,9 +16,9 @@ Making grouping index variables
 
 # Adata$testdata값을 4개의 그룹으로 나눔
   cn <- quantile(Adata$edu, c(.25, .5, .75))
-
+  
 # 또는 직접 입력도 가능함
   cn <- c(-0.36, 0.33, 0.78 )
-  Adata<-mkgroup(Adata, 'edu' OR 8, cn) # 8=컬럼번호
+  Adata<-mkgroup(Adata, edu)
 
 }

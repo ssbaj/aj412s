@@ -16,6 +16,8 @@ find_col2<-function(DataSet, index_id ){
   }
 }
 
+col_number <- deparse(substitute(col_number))
+
 ##----------------------------------------
 # find_col2()를 사용해 컬럼번호 찾기
 if(is.numeric(col_number)==F) {col_number<-find_col2(tmp_data, col_number) }

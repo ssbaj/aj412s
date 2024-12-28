@@ -9,13 +9,13 @@ Making dummy variables
 }
 \examples{
 
-df<-mkdum(data_set, 'satprice' OR nth variable)
+df<-mkdum(data_set, satprice)
 
 EXAMPLE: 
 
 df<-BasicData
-df<-mkdum(df, 'brand' OR 2) # making dummies for brand
-df<-mkdum(df, 'edu' OR 7) # making dummies for edu
+df<-mkdum(df, brand) # making dummies for brand
+df<-mkdum(df, edu) # making dummies for edu
 
   
 }

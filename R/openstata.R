@@ -2,24 +2,21 @@
 
 openstata<-function(datasetname, skip=0, header=T) {
 
-  if (base::missing(datasetname)) {
-    cat("", '\n')
-    cat("  # It does not need header option. It loads Stata dataset files.", '\n')
-    cat("  # If 1st~8th lines are comments and you want to skip them, skip=8. ", '\n')
-    cat("    df<-opendta('stata_data.dta') OR, df<-opensav( 'stata_data.dta', skip=8 ) ", '\n')
-    cat(" ", '\n')
-    cat("  # How to make variable labels ------------------------", '\n')
-    cat("    library(labelled) ", '\n')
-    cat("    var_label(df$studyno1) <- 'counting number of ID' ", '\n')
-    cat("    var_label(df$studyno1) ", '\n')
-    return(cat("", '\n') )
+if (base::missing(datasetname)) {
+	cat("# Loading Stata data file( .dta ) ---- ", '\n')
+	cat("  Adata<-openstata( MROZ.dta ) ", '\n')
+	cat("  옵션: Adata<-openstata( MROZ.dta )", '\n')
+	return(cat(" ", '\n') )
   }
 
-    if (!require(haven)) {
+if (!require(haven)) {
     install.packages("haven")
   }
 
+datasetname <- deparse(substitute(datasetname))
+if(datasetname == "file.choose()") {datasetname <- file.choose() }
+
 library(haven)
-tmp<-read_dta(datasetname, skip=skip)
-return(tmp)
+tmpdata <-read_dta(datasetname, skip=skip)
+return(tmpdata)
 }
