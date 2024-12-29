@@ -1,7 +1,7 @@
-find_outlier<-function(model_outlier, list_no=6, threshold=2){
+find_outlier<-function(model_outlier, list_no=6, threshold=3){
   
   if (base::missing(model_outlier)) {
-    return(cat("  find_outlier(분석결과, 리포팅되는 극단치 갯수(디폴트6개), qnorm(확률)=2) "))}
+    return(cat("  find_outlier(분석결과, 리포팅되는 극단치 갯수(디폴트6개), qnorm(확률)=3) "))}
   
   n<-length(model_outlier$resid)
   tmp<-rep(NA,n)

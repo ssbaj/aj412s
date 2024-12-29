@@ -1,9 +1,9 @@
-find_outlier.vector <- function(model_outlier, list_no=6, threshold=2){
+find_outlier.vector <- function(model_outlier, list_no=6, threshold=3){
   
  if (base::missing(model_outlier)) {
         cat('# 변수의 값들 중 극단치에 해당되는 값을 찾는 함수 ---- ','\n')
         cat("  find_outlier.vector(df$변수명 또는 vector,  ",'\n')
-		return( cat("          리포팅되는 극단치 갯수(디폴트6개), threshold=2 또는 threshold=qnorm(확률) ",'\n' ) )
+		return( cat("          리포팅되는 극단치 갯수(디폴트6개), threshold=3 또는 threshold=qnorm(확률) ",'\n' ) )
     }
     
 	model_outlier<-as.vector(model_outlier)
