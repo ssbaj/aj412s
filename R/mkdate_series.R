@@ -35,9 +35,10 @@ tmp1<-as.character(tmp1)
 tmp2<-as.character(tmp2)
 
 for (i in 1:n){
-if(nchar(tmp2[i])==1) {
-tmp2[i]<-paste0('0', tmp2[i], sep='')
-} }
+	if(nchar(tmp2[i])==1) {
+	tmp2[i]<-paste0('0', tmp2[i], sep='')
+	} 
+  }
 }
 
 ## monthly data END ----------------
@@ -54,28 +55,28 @@ if( (start_m != 3) & (start_m !=6 ) & (start_m != 9) & (start_m!=12) ) {
 	cat(' ', '\n')
 	break
 }
-		
-		if(start_m==12) 
-			{tmp2[i]<-start_m
-			 start_m<-3
-			 tmp1[i]<-start_y
-			 start_y<-start_y+1}
-		else{
-			 tmp2[i]<-start_m
-			 start_m<-start_m+3
-			 tmp1[i]<-start_y
+
+	if(start_m==12) 
+		{tmp2[i]<-start_m
+		 start_m<-3
+		 tmp1[i]<-start_y
+		 start_y<-start_y+1}
+	else{
+		 tmp2[i]<-start_m
+		 start_m<-start_m+3
+		 tmp1[i]<-start_y
 		} 
-	}
+}
 
-	tmp1<-as.character(tmp1)
-	tmp2<-as.character(tmp2)
+tmp1<-as.character(tmp1)
+tmp2<-as.character(tmp2)
 
-
-	for (i in 1:n){
+for (i in 1:n){
 		if(nchar(tmp2[i])==1) {
 		tmp2[i]<-paste0('0', tmp2[i], sep='')
-		} }
+		} 
 	}
+}
 
 # quarterly data END --------------------------
 

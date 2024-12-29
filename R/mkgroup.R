@@ -71,8 +71,7 @@ if(sign ==1 ) {
 	}
 }
 
-
-   
+  
 ## <=
 if(sign != 1) {
   for(ix_0 in 1:nx_0) {
@@ -93,13 +92,12 @@ if(sign != 1) {
   }
 
 
-  
-  tmp_select_columns<-as.data.frame(groupIndexx_0)
-  name_dataset2<-cbind(name_dataset, tmp_select_columns)
-  ncolX0<-ncol(name_dataset2)
-  colnames(name_dataset2)[ncolX0] <- paste0( "g_", colnames(name_dataset[select_columns]) , sep='')
-  
-  name_dataset2<-as.data.frame(name_dataset2)
+tmp_select_columns<-as.data.frame(groupIndexx_0)
+name_dataset2<-cbind(name_dataset, tmp_select_columns)
+ncolX0<-ncol(name_dataset2)
+colnames(name_dataset2)[ncolX0] <- paste0( "g_", colnames(name_dataset[select_columns]) , sep='')
+
+name_dataset2<-as.data.frame(name_dataset2)
 
 return(name_dataset2)
 }
