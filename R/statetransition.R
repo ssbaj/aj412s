@@ -23,8 +23,8 @@ statetransition <- function(Adata){
 	cat("    Mpower(tmp2, 2) ",'\n')
 	return(cat("     "))  }
 	
-	if ( {sort(unique(Adata[,1]) )==0}[1]==T) {print('상태1 코드값은 1 이상의 값으로 기록하세요'); break}
-	if ( {sort(unique(Adata[,2]) )==0}[1]==T) {print('상태2 코드값은 1 이상의 값으로 기록하세요'); break}
+	if ( {sort(unique(Adata[,1]) )==0}[1]==T) {print('상태1 코드값은 1 이상의 값으로 기록하세요')}
+	if ( {sort(unique(Adata[,2]) )==0}[1]==T) {print('상태2 코드값은 1 이상의 값으로 기록하세요')}
 	
 	Nrange1<-sum(unique(Adata[,1])>0)
 	Nrange2<-sum(unique(Adata[,2])>0)
