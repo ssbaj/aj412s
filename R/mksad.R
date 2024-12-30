@@ -58,7 +58,7 @@ df<-as.data.frame(df)
 
 if( class(df[ ,DATE_col])!="Date")  {
 cat('   2번째 column의 데이터 형태가 Date가 아닙니다', '\n')
-break }
+}
 
 month_count<-NA
 month_type<-NA
