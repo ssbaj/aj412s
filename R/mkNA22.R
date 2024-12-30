@@ -1,8 +1,8 @@
-mkNAs2<-function(tmp_data, col_number, NAs_number){
+mkNA22<-function(tmp_data, col_number, NAs_number){
 
 if (base::missing(tmp_data)) {
     cat("  df<-as.data.frame(df) ", '\n')
-    return(cat("  df <- mkNAs(df, 변수명, 88)  *NOTE: 88=변수의 레코드를 88개 랜덤하게 골라 NA로 치환시켜라 ") ) }
+    return(cat("  df <- mkNA(df, 변수명, 88)  *NOTE: 88=88개 행을 랜덤하게 골라 값을 NA로 치환 ") ) }
 
 ##-----------------------------------
 # 변수명을 컬럼 번호로 변경시키는 함수

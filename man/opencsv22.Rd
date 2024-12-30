@@ -1,8 +1,8 @@
-\name{opencsv2}
-\alias{opencsv2}
+\name{opencsv22}
+\alias{opencsv22}
 \title{Loading csv file containing Korean}
 \usage{
-opencsv2()
+opencsv22()
 }
 \description{
 Loading csv file containing Korean
@@ -14,6 +14,7 @@ Loading csv file containing Korean
   # file에 변수명이 포함되었으면 header=T / 변수명이 없으면 따로 지정할 필요 없음  
   # file에 1번~8번행이 설명문일 때, 설명문을 제거한 후 데이터를 로딩하려면 skip=8  
  
-  df<-opencsv2( 가계금융복지2018.csv, header=F, skip=0 )  
+  df<-opencsv22( 가계금융복지2018.csv )
+  df<-opencsv22( 가계금융복지2018.csv, header=F, skip=0 )
   
 }

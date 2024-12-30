@@ -1,4 +1,4 @@
-renaming<-function(name_dataset ) {
+renaming22<-function(name_dataset ) {
 
 if (base::missing(name_dataset)) {
         return( cat("  Adata<-renaming(Adata)", '\n') )

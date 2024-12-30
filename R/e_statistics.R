@@ -1,4 +1,4 @@
-e_stat<-function(explaining=0){
+e_statistics<-function(explaining=0){
 if(explaining==0) {
 cat("\014")
 cat("\033[1;34m**************************************************************** \033[0m ", '\n')

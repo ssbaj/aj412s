@@ -1,8 +1,8 @@
-\name{e_stat}
-\alias{e_stat}
+\name{e_statistics}
+\alias{e_statistics}
 \title{Explaining basic statistical method}
 \usage{
-e_stat()
+e_statistics()
 }
 \description{
 Explaining basic statistical method

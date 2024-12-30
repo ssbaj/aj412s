@@ -1,4 +1,4 @@
-mkdum2 <- function(name_dataset, select_columns) {
+mkdum22 <- function(name_dataset, select_columns) {
 
 if (base::missing(name_dataset)) {
 cat(" \033[1;36m# Examples ---------- \033[0m", '\n' )

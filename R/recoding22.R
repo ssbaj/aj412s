@@ -1,4 +1,4 @@
-recoding2<-function(name_dataset,  select_columns ) {
+recoding22<-function(name_dataset,  select_columns ) {
 
 if (base::missing(name_dataset)) {
         cat("\033[1;32m# 명령문 예제 -------- \033[0m ", '\n')

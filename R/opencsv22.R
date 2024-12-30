@@ -1,6 +1,6 @@
 # Korean encoding command is not necessary
 # It is a modification of read.csv
-opencsv2 <- function(name_dataset, header=TRUE, skip=0) {
+opencsv22 <- function(name_dataset, header=TRUE, skip=0) {
 
 if (base::missing(name_dataset)) {
 	cat("# Loading csv file ( .csv ) ----", '\n')

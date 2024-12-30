@@ -1,4 +1,4 @@
-mklog2 <-function(name_dataset, select_columns) {
+mklog22 <-function(name_dataset, select_columns) {
  
 if (base::missing(name_dataset)) {
 cat(" df<-mklog(df, variable) *NOTE: 변수에 자연로그를 취함 ", '\n')

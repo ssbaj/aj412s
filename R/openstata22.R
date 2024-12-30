@@ -1,4 +1,4 @@
-openstata2 <- function(datasetname, skip=0, header=T) {
+openstata22 <- function(datasetname, skip=0, header=T) {
 
 if (base::missing(datasetname)) {
 	cat("# Loading Stata data file( .dta ) ---- ", '\n')

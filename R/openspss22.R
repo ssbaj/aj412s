@@ -1,4 +1,4 @@
-openspss2 <- function(datasetname, skip=0, header=T) {
+openspss22 <- function(datasetname, skip=0, header=T) {
 
 if (base::missing(datasetname)) {
 	cat("# Loading SPSS data file ( .sav ) ----", '\n')

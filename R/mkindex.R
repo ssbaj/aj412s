@@ -32,7 +32,7 @@ if(temp_count==1) {
 
 suppressPackageStartupMessages(library("dplyr"))
 tmp_data <- tmp_data %>% relocate(index)
-colnames(tmp_data)[1]<-"INDEX"
+colnames(tmp_data)[1]<-"index"
 
 return(tmp_data)
 

@@ -1,14 +1,14 @@
-\name{recoding2}
-\alias{recoding2}
+\name{recoding22}
+\alias{recoding22}
 \title{Recoding coding values}
 \usage{
-recoding2()
+recoding22()
 }
 \description{
 Recoding coding values
 }
 \examples{
 
-df<-recoding2(df, 변수명)
+df<-recoding22(df, 변수명)
 
 }

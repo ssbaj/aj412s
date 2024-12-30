@@ -1,4 +1,4 @@
-mkNAs<-function(tmp_data, col_number, NAs_number){
+mkNA<-function(tmp_data, col_number, NAs_number){
 
 if (base::missing(tmp_data)) {
     cat("  df<-as.data.frame(df) ", '\n')

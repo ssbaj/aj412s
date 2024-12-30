@@ -1,4 +1,4 @@
-mksad2 <-function(df, DATE_col, data_col, SeaMethod=1 , ma.method=5) {
+mksad22 <-function(df, DATE_col, data_col, SeaMethod=1 , ma.method=5) {
  
 if (base::missing(df)) {
     cat("\033[1;31m # 시계열 자료의 계절조정 ------------- \033[0m ", '\n')

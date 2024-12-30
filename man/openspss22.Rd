@@ -1,8 +1,8 @@
-\name{openspss2}
-\alias{openspss2}
+\name{openspss22}
+\alias{openspss22}
 \title{Loading SPSS files}
 \usage{
-openspss2()
+openspss22()
 }
 \description{
 Loading sav files
@@ -14,6 +14,6 @@ Loading sav files
   # sav파일은 항상 header가 있기 때문에 header명령문 지정은 필요없음
   # file에 1번~8번행이 설명문일 때, 설명문을 제거한 후 데이터를 로딩하려면 skip=8  
  
-  df<-openspss2( Z0345.sav )  
+  df<-openspss22( Z0345.sav )  
   
 }

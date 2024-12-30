@@ -9,6 +9,6 @@ Recoding coding values
 }
 \examples{
 
-df<-recoding(df, 7) # The 7th variable is nominal variable
+df<-recoding(df, 'inc') # 'inc'
 
 }

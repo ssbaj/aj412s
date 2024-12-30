@@ -1,4 +1,4 @@
-openxlsx2 <- function(datasetname, header=T, skip=0, sheet=1) {
+openxlsx22 <- function(datasetname, header=T, skip=0, sheet=1) {
 
 if (base::missing(datasetname)) {
 	cat("# Loading Excel file ( .xlsx 또는 .xls) ", '\n')
