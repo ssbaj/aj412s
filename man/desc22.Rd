@@ -1,8 +1,8 @@
-\name{desc2}
-\alias{desc2}
+\name{desc22}
+\alias{desc22}
 \title{Function of calculating mean,SD, and Quantile for all variables}
 \usage{
-desc2()
+desc22()
 }
 \description{
 Function of calculating mean, SD, and Quantile for all variables
@@ -13,9 +13,9 @@ Function of calculating mean, SD, and Quantile for all variables
  df<-BasicData
  
  # default of digtis=3
- desc2(df)
+ desc22(df)
  
  # Change digtis=5
- desc2(df, 5)
+ desc22(df, 5)
  
 }
