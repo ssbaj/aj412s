@@ -3,7 +3,7 @@ recoding22<-function(name_dataset,  select_columns ) {
 if (base::missing(name_dataset)) {
         cat("\033[1;32m# 명령문 예제 -------- \033[0m ", '\n')
 		cat("\033[1;32m  df<-as.data.frame(df) \033[0m ", '\n')
-        return( cat("\033[1;32m  df<-recoding2(df, 변수명) \033[0m ", '\n') )
+        return( cat("\033[1;32m  df<-recoding22(df, 변수명) \033[0m ", '\n') )
     }
 
 cat("\033[1;31m## 문자 레코드를 숫자로 바꾸기 --------\033[0m ", '\n')
