@@ -1,6 +1,6 @@
 # How To Use: df$index<-mkindex22(df) 
 
-mkindex<-function(tmp_data){
+mkindex22<-function(tmp_data){
 
 if (base::missing(tmp_data)) {
     cat("  df<-as.data.frame(df) ", '\n')
