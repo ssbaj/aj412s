@@ -4,7 +4,7 @@ mkindex22<-function(tmp_data){
 
 if (base::missing(tmp_data)) {
     cat("  df<-as.data.frame(df) ", '\n')
-    return(cat("  df<-mkindex(df)") ) }
+    return(cat("  df<-mkindex22(df)") ) }
 
 
 df_variabl_names<-colnames(tmp_data)
