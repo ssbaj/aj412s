@@ -1,6 +1,8 @@
 find_outlier.vector<-function(model_outlier, list_no = 6, threshold = 3) {
-list_no = 6
-threshold = 3
+
+ if (base::missing(model_outlier)) {
+        return(cat("  find_outlier.vector(df$변수명 또는 vector, 리포팅되는 극단치 갯수(디폴트6개), threshold=3 OR qnorm(확률) ) "))
+    }
  
 model_outlier <- as.vector(model_outlier)
 n <- length(model_outlier)
@@ -42,7 +44,7 @@ library(dplyr)
       "\n")
   cat("\033[1;31m  사용법: find_outlier(데이터셋$변수명, 리포팅되는 극단치 갯수(디폴트6개),  \033[0m",
       "\n")
-  cat("\033[1;31m                 threshold=2(디폴트값) 또는 threshold=qnorm(확률) ) \033[0m",
+  cat("\033[1;31m              threshold=2(디폴트값) 또는 threshold=3 OR qnorm(확률) ) \033[0m",
       "\n")
   cat("\033[1;32m  절대값을 취한 |변수의 z값|이 threshold보다 큰 레코드의 갯수: \033[0m",
       nrow(dataset1_arrange), "\n")
