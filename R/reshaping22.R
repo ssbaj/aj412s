@@ -10,8 +10,8 @@ reshaping22<-function(df, commoncol, repeating){
 		cat("   df={V1 V2 V3 V4 V5 V6 V7 V8}   ", '\n')
 		cat("   *NOTE: V1과 V2는 공통, V3~V8을 2개씩 끊어서 데이터셋을 만든 후 rbind ", '\n')
 	    cat("   *NOTE: V1 V2 V3 V4 : V1 V2 V5 V6 : V1 V2 V7 V8 - 3개의 데이터셋이 repeating", '\n')
-		cat("   *NOTE: df2<-reshaping(df, 공통컬럼은 1~k까지, (k+1)~n컬럼을 끊어서 m개 PART로 나눌 경우) ", '\n')
-		cat("   *NOTE: df2<-reshaping(df, k, m) ", '\n')
+		cat("   *NOTE: df2<-reshaping22(df, 공통컬럼은 1~k까지, (k+1)~n컬럼을 끊어서 m개 PART로 나눌 경우) ", '\n')
+		cat("   *NOTE: df2<-reshaping22(df, k, m) ", '\n')
 		return(cat("      ") ) }
 
 

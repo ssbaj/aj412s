@@ -1,7 +1,7 @@
 renaming22<-function(name_dataset ) {
 
 if (base::missing(name_dataset)) {
-        return( cat("  Adata<-renaming(Adata)", '\n') )
+        return( cat("  Adata<-renaming22(Adata)", '\n') )
     }
 
 name_dataset<-as.data.frame(name_dataset)

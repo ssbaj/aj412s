@@ -1,7 +1,7 @@
 mklog22 <-function(name_dataset, select_columns) {
  
 if (base::missing(name_dataset)) {
-cat(" df<-mklog(df, variable) *NOTE: 변수에 자연로그를 취함 ", '\n')
+cat(" df<-mklog22(df, variable) *NOTE: 변수에 자연로그를 취함 ", '\n')
     cat(" \033[1;34m# 변수의 값들은 1.0보다 커야 합니다. min()으로 최솟값을 체크하세요. \033[0m ", '\n')
 return(cat(" \033[1;34m# example of logs : log(0)=NA, log(0.1)=NA, log(1.0)=0, log(10)=2.30 \033[0m ") ) }
 
@@ -52,7 +52,7 @@ if(is.numeric(select_columns)==F) {select_columns<-find_col2(name_dataset, selec
 	  
           else if(tmp$log_[i] <= -1) {tmp$log_[i]<- ( -1*log(-1*tmp$log_[i]))}
 
-	  else { print('  ** There is problesm in log-transformation  **') }
+	  else { print('  ** There are problems in log-transformation  **') }
 	  
 	  }
 

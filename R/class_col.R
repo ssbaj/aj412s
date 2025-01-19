@@ -5,7 +5,7 @@ class_col <-function(df) {
   mycolnames<-colnames(df)
   colnumber<-length( colnames(df))
   for(i in 1:colnumber) {
-    cat( "  ", mycolnames[i],'(',i,') ' , class( df[1, i] ) , sep="", '\n' )  }
+  cat( "  ", mycolnames[i],'(',i,') ' , tmp , sep="", '\n' )  }
   cat("\033[1;31m  # --------------------------------------\033[0m ", '\n')
   cat(" ", '\n')
   }

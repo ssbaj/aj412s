@@ -2,8 +2,8 @@ openspss22 <- function(datasetname, skip=0, header=T) {
 
 if (base::missing(datasetname)) {
 	cat("# Loading SPSS data file ( .sav ) ----", '\n')
-	cat("  Adata<-openspss2( KoreaData.sav ) ", '\n')
-	cat("  옵션: Adata<-openspss2( KoreaData.sav )", '\n')
+	cat("  Adata<-openspss22( KoreaData.sav ) ", '\n')
+	cat("  옵션: Adata<-openspss22( KoreaData.sav )", '\n')
 	return(cat(" ", '\n') )
 	}
 

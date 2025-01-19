@@ -2,10 +2,10 @@ openxlsx22 <- function(datasetname, header=T, skip=0, sheet=1) {
 
 if (base::missing(datasetname)) {
 	cat("# Loading Excel file ( .xlsx 또는 .xls) ", '\n')
-	cat("  Adata<-openxlsx2( KoreaData.xlsx ) ", '\n')
-	cat("  옵션: Adata<-openxlsx2( KoreaData.xlsx, header=T/F, skip=2 입니다 )", '\n')
+	cat("  Adata<-openxlsx22( KoreaData.xlsx ) ", '\n')
+	cat("  옵션: Adata<-openxlsx22( KoreaData.xlsx, header=T/F, skip=2 입니다 )", '\n')
 	cat("  엑셀파일 첫 줄에 변수명이 없으면 자동으로 변수명V1, V2...이 추가됩니다 ", '\n')
-	return(cat("  첫 줄에 변수명이 없을 때의 명령문: Adata<-openxlsx2( KoreaData.xlsx, header=F )", '\n') )
+	return(cat("  첫 줄에 변수명이 없을 때의 명령문: Adata<-openxlsx22( KoreaData.xlsx, header=F )", '\n') )
 	}
 
   if (!require(readxl)) {

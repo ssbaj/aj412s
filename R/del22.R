@@ -11,7 +11,7 @@ tmp_colnames<-colnames(DataSet)
 n<-length(tmp_colnames)
 for(i in 1:n){
   if(index_id==tmp_colnames[i]) {return(as.numeric(i))}
-}
+  }
 }
 
 
