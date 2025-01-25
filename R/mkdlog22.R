@@ -1,15 +1,12 @@
-mklog22 <-function(dataset_name , ...) {
+mkdlog22 <-function(dataset_name , ...) {
 
 # 함수명은 5글자 이상을 사용할 것을 추천함
 
 #-------------------------------------
 if (base::missing(dataset_name)) {
-cat(" df<-mklog22(df, variable) *NOTE: 변수에 자연로그를 취함 ", '\n')
+cat(" df<-mklog22(df, var1, var2, var3) *NOTE: 변수에 자연로그를 취함 ", '\n')
     cat(" \033[1;34m# 변수의 값들은 1.0보다 커야 합니다. min()으로 최솟값을 체크하세요. \033[0m ", '\n')
 return(cat(" \033[1;34m# example of logs : log(0)=NA, log(0.1)=NA, log(1.0)=0, log(10)=2.30 \033[0m ") ) }
-
-if(class(dataset_name)!="data.frame") {
-    return(cat(" CORRECT COMMAND: df<-mklog22(df, 변수1, 변수2, 변수3)", '\n')) }
 
 
 # find_col2함수 ----------------
@@ -79,13 +76,32 @@ makinglogs<-function(dataset_name, select_columns) {
 ## 로그전환 변수를 combin 하기------------------------------------
 ncounter_logs <- length(r_var_index_number)
 
-tmplog_dataframe<-dataset_name
+tmp_dataframe<-dataset_name[,r_var_index_number]
+tmplog_dataframe<-dataset_name[, c(1,2)]
+tmplog_dataframe<-mkindex22(tmplog_dataframe)
+tmplog_dataframe<-tmplog_dataframe[, -c(2,3)]
 
 for(i in r_var_index_number) {
   tmplog<-makinglogs(dataset_name, i)
   tmplog_dataframe<-data.frame(tmplog_dataframe, tmplog)
 }
+  
+  tmplog_dataframe<-tmplog_dataframe[,-c(1)]
+  tmplog_dataframe2<- tmplog_dataframe - dplyr::lag(tmplog_dataframe)
+  
+  tmp2<-data.frame(tmplog_dataframe, tmplog_dataframe2)
+  
+  ncounterx <- ncol(tmplog_dataframe)/2
+  jcounterxx<-length(r_var_index_number)
+  
+  ## Changing variable names
+  for(i in r_var_index_number){
+    jcounterxx <- jcounterxx + 1
+    colnames(tmp2)[jcounterxx] <- paste( "dlog_" , colnames(dataset_name)[i] , sep='')
+    }
 
-return(tmplog_dataframe)
+tmp3<-data.frame(tmp_dataframe, tmp2)
+
+return(tmp3)
 
 }
