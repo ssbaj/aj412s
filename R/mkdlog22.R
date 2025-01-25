@@ -100,7 +100,7 @@ for(i in r_var_index_number) {
     colnames(tmp2)[jcounterxx] <- paste( "dlog_" , colnames(dataset_name)[i] , sep='')
     }
 
-tmp3<-data.frame(tmp_dataframe, tmp2)
+tmp3<-data.frame(dataset_name, tmp2)
 
 return(tmp3)
 
