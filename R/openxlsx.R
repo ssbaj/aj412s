@@ -1,34 +1,37 @@
-openxlsx<-function(datasetname, header=T, skip=0, sheet=1) {
+openxlsx<-function(datasetname, header=F, skip=0, sheet=1) {
 
 if (base::missing(datasetname)) {
-	cat("# Loading Excel file ( .xlsx 또는 .xls) ", '\n')
-	cat("  Adata<-openxlsx( KoreaData.xlsx ) ", '\n')
-	cat("  옵션: Adata<-openxlsx( KoreaData.xlsx, header=T/F, skip=2 입니다 )", '\n')
-	cat("  엑셀파일 첫 줄에 변수명이 없으면 자동으로 변수명V1, V2...이 추가됩니다 ", '\n')
-	return(cat("  첫 줄에 변수명이 없을 때의 명령문: Adata<-openxlsx( KoreaData.xlsx, header=F)", '\n') )
+	cat("", '\n')
+	cat("  # if there are variable names in the first line, header=T ", '\n')
+    cat("  # if 1st~8th lines are comments and you want to skip them, skip=8 ", '\n')
+	cat("", '\n')
+	cat("  df<-openxlsx( 'DATA2.xlsx', header=T, skip=0 ) ", '\n')
+	return(cat("", '\n') )
 	}
 
-  if (!require(readxl)) {
-    cat('Installing readxl package load Excel data .....', '\n')
-    install.packages("readxl")
-  }
-  
-  suppressMessages(library(readxl))
-  
-  datasetname <- deparse(substitute(datasetname))
 
-  if(datasetname == "file.choose()") {datasetname <- file.choose() }
+if (!require(readxl)) {
+  install.packages("readxl")
+}
 
-  tmp<-read_excel(datasetname, skip=skip, col_names=header, sheet=sheet, .name_repair = "minimal")
-  num_vars <- ncol(tmp)
+tryCatch({
+library(readxl)
+tmp.df<-read_excel(datasetname, skip=skip, col_names=header)
+}, error = function(e) {
+  cat("  # How to solve ERROR? ==> 'readxl' will be installed automatically. ", '\n')
+})
 
-  variable_names <- paste0("V", 1:num_vars, sep = "")
 
-  if(header==F) {
-    for(i in 1:num_vars){
-      colnames(tmp)[i] <- variable_names[i]
-    } }
+tmp<-read_excel(datasetname, skip=skip, col_names=header, sheet=sheet)
+num_vars <- ncol(tmp)
 
-  return(tmp)
+variable_names <- paste0("V", 1:num_vars, sep = "")
+
+if(header==F) {
+for(i in 1:num_vars){
+colnames(tmp)[i] <- variable_names[i]
+} } 
+
+return(tmp)
 }
 

@@ -1,11 +1,8 @@
-cor22<-function(k0_dataset, digits=2, method='pearson'){
-
-options(warn = -1)
+cor22<-function(k0_dataset, method='pearson'){
 
 if (base::missing(k0_dataset)) {
      cat("  Two variable correlation --> jmv::corrMatrix(df, vars=vars(donation, age))", '\n' )
-	 cat("  Use dplyr to make data.set and run cor22: dplyr를 사용하면 변수명이 cor22로 전달됨  ", '\n' )
-	 return(cat("  cor22((df%>%select(var1, var2, ... ))), method='pearson' or 'kendall' or 'spearman') "))}
+	 return(cat("  data.frame correlation --> cor22(df, method='pearson' or 'kendall' or 'spearman') "))}
 
 if (!require(dplyr)) {
   install.packages("dplyr")
@@ -35,7 +32,7 @@ k8_dataset[,i][k8_dataset[,i] == '']<-NA
 
 k8_dataset<-k8_dataset[complete.cases(k8_dataset), ]
 
-MYcorrelation1<-round( cor(k8_dataset, method=method) , digits)
+MYcorrelation1<-round( cor(k8_dataset, method=method) , 4)
 MYcorrelation2<-MYcorrelation1
 MYcorrelation2[upper.tri(MYcorrelation1)] <- ''
 MYcorrelation3<-as.data.frame(MYcorrelation2)
@@ -87,7 +84,7 @@ k8_dataset[,i][k8_dataset[,i] == '']<-NA
 
 k8_dataset<-k8_dataset[complete.cases(k8_dataset), ]
 
-MYcorrelation1<-round( cor(k8_dataset, method=method) , digits)
+MYcorrelation1<-round( cor(k8_dataset, method=method) , 4)
 MYcorrelation2<-MYcorrelation1
 MYcorrelation2[upper.tri(MYcorrelation1)] <- ''
 MYcorrelation3<-as.data.frame(MYcorrelation2)
@@ -114,6 +111,7 @@ cat("\033[1;34m  NA data is removed by using the 'complete.cases' command. \033[
 cat("\033[1;34m ------------------------  ", '\n')
 cat("         ", '\n')
 }
+
 
 return(MYcorrelation3)
 } 

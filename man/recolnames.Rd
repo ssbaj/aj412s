@@ -1,8 +1,8 @@
-\name{renaming22}
-\alias{renaming22}
+\name{recolnames}
+\alias{recolnames}
 \title{Rename variable names}
 \usage{
-renaming22()
+recolnames()
 }
 \description{
 Rename variable names
@@ -10,6 +10,6 @@ Rename variable names
 \examples{
 
 # Rename variable names
-df<-renaming22(df)
+df<-recolnames(df)
 
 }
