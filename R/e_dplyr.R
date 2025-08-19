@@ -40,5 +40,7 @@ cat(" # aggegate vs. group_by() summarize() ", '\n')
 cat("   aggregate(가격만족도 ~ 브랜드, data = 데이터셋, FUN = mean) ", '\n')
 cat("   데이터셋 %>% group_by(브랜드) %>% summarize(mean(가격만족도, na.rm=T)) ", '\n')
 cat("   ", '\n')
-} }
+}
+
+}
 
