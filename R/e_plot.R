@@ -1,0 +1,28 @@
+e_plot<-function(explaining=0){
+if(explaining==0) {
+cat("# ------------------------------------------------- ", '\n')
+cat("  df<-KoreaMacro # 내장데이터 사용", '\n') 
+cat("  df<-mkdate_form(df$yearmonth) ", '\n')
+cat("  colnames(df)[8]<-c('date0') ", '\n')
+cat("  plot(df$date0, df$surplus, type='l', col='red', xlab='',ylab='', cex.lab=1.3) ", '\n')
+cat("  par(new=TRUE) ", '\n')
+cat("  plot(df$date0, df$kospi, type='l', col='blue', xlab='',ylab='', axes=FALSE) ", '\n')
+cat("  axis(side = 4, col = 'blue') ", '\n')
+cat("  mtext('KOSPI지수', side = 4, col='blue' , cex.lab=1.3) ", '\n')
+cat("  title(main='경상수지와 코스피지수',xlab='시간',ylab='경상수지', cex.lab=1.3, cex.main=1.3) ", '\n')
+cat("# ------------------------------------------------- ", '\n')
+cat("  library(readxl); library(aj412s) ", '\n')
+cat("  df<-openxlsx('Data42_Suwon.xlsx', header=T) ", '\n')
+cat("  colnames(df)<-c('date0','index','budget','rev','accrev','exp','accexp','slack') ", '\n')
+cat("  df$date0<-as.Date(df$date0) ", '\n')
+cat("  df$accrev<-df$accrev/1000000000 ", '\n')
+cat("  df$accexp<-df$accexp/1000000000 ", '\n')
+cat("  df$slack<-df$slack/1000000000 ", '\n')
+cat("  plot(x=df$date0, y=df$accrev, type='l', lwd='3', lty='dotted', col='red', xlab='',ylab='', ylim=c(10, 4000)) ", '\n')
+cat("  par(new=TRUE) ", '\n')
+cat("  plot(x=df$date0, y=df$accexp, type='l', lwd='3', lty='twodash', col='blue', xlab='', ylab='', ylim=c(10, 4000)) ", '\n')
+cat("  par(new=TRUE) ", '\n')
+cat("  plot(x=df$date0, y=df$slack, type='l', lwd='3', lty='solid', col='salmon3', xlab='', ylab='', ylim=c(10, 4000)) ", '\n')
+cat("  title(main='세입/세출/여유자원  ', xlab='시간', ylab='세입(Red)/세출(Blue)/여유자산(Brown)/단위:10억', cex.main=2, cex.lab=1.2) ", '\n')
+
+}}

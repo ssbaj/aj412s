@@ -1,0 +1,36 @@
+e_ttest<-function(explaining=0){
+
+if(explaining==0) {
+
+cat("    ", '\n')
+cat("  # One-way t-test ", '\n')
+cat("  # 가상의 데이터 생성 (학생 10명의 키) ", '\n')
+cat("  heights <- c(172, 178, 176, 180, 171, 174, 179, 175, 173, 177) ", '\n')
+cat("   ", '\n')
+cat("  # t-test 수행 (mu = 비교하려는 특정 값) ", '\n')
+cat("  t.test(heights, mu = 175) ", '\n')
+cat("   ", '\n')
+cat("  # Comparing two population means ", '\n')
+cat("  # 가상의 데이터 생성 ", '\n')
+cat("  group_A <- c(80, 85, 88, 90, 92) ", '\n')
+cat("  group_B <- c(70, 75, 78, 80, 82) ", '\n')
+cat("   ", '\n')
+cat("  # t-test 수행 ", '\n')
+cat("  t.test(group_A, group_B, var.equal = TRUE) ", '\n')
+cat("   ", '\n')
+cat("  # var.equal 옵션을 생략하거나 FALSE로 설정 ", '\n')
+cat("  t.test(group_A, group_B, var.equal = FALSE) ", '\n')
+cat("   ", '\n')
+cat("  # 예시 데이터 프레임 ", '\n')
+cat("  df <- data.frame( ", '\n')
+cat("    score = c(80, 85, 90, 70, 75, 78), ", '\n')
+cat("    class = c('A', 'A', 'A', 'B', 'B', 'B') ", '\n')
+cat("    ) ", '\n')
+cat("   ", '\n')
+cat("  # 공식(Formula) 방식 사용: 값 ~ 그룹 ", '\n')
+cat("  t.test(score ~ class, data = df, var.equal = TRUE) ", '\n')
+cat("  t.test(score ~ class, data = df, var.equal = FALSE) ", '\n')
+cat("   ", '\n')
+
+}}
+

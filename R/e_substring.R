@@ -1,0 +1,33 @@
+e_substring<-function(explaining=0){
+if(explaining==0) {
+cat("\033[1;31m## string문자열 예제 명령문 ------  \033[0m", '\n')
+cat("   ", '\n')
+cat("  v1<-c(101, 102, 103) ", '\n')
+cat("  v2<-c('경기도 일산구', '경기도 수지구', '경기도 성남시') ", '\n')
+cat("  df<-data.frame(v1, v2) ", '\n')
+cat("   ", '\n')
+cat("\033[1;33m## df 데이터셋 ------  \033[0m", '\n')
+cat("  head(df) ", '\n')
+cat("  # v1            v2 ", '\n')
+cat("    # 1 경기도 일산구 ", '\n')
+cat("    # 2 경기도 수지구 ", '\n')
+cat("    # 3 경기도 성남시 ", '\n')
+cat("   ", '\n')
+cat("  for(i in 1:3) { ", '\n')
+cat("\033[1;33m  # nchar - 글자의 갯수를 카운팅하기 \033[0m", '\n')
+cat("  n<-nchar(df$v2[i]) ", '\n')
+cat("   ", '\n')
+cat("\033[1;33m  # substring - 마지막글자와 이전 글자를 솎아내기 \033[0m", '\n')
+cat("  print(substring(df$v2[i], (n-1):n)) ", '\n')
+cat("   ", '\n')
+cat("\033[1;33m  # gsub - 경기도를 GG로 치환 \033[0m", '\n')
+cat("  Ex2<-gsub('경기도', 'GG', df$v2[i]) ", '\n')
+cat("  print(Ex2) ", '\n')
+cat("   ", '\n')
+cat("\033[1;33m  # paste - 2개 단어를 연속으로 결합해 names변수 만들기\033[0m", '\n')
+cat("  df$names<-paste(df$v1, df$v2, sep='') ", '\n')
+cat(" }  ", '\n')
+cat("   ", '\n')
+
+}  }
+
