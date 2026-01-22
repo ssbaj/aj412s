@@ -1,4 +1,12 @@
 check_non_numeric <- function(df) {
+
+if (base::missing(df)) {
+	cat("    ", '\n')
+	cat("\033[1;33m  library(dplyr) ", '\n')
+	cat("\033[1;33m  df <- df %>% mutate(across(c(변수1, 변수2, 변수3), ~ suppressWarnings(as.numeric(as.character(.)))))  ", '\n')
+	return(cat("   ", '\n') )
+	}
+
   # 결과를 담을 빈 데이터프레임 생성 (순서: Column, Row, Value)
   report <- data.frame(
     Column = character(),
