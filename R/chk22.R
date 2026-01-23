@@ -1,78 +1,95 @@
-chk22 <- function(data) {
+chk22 <- function(data, exclude = NULL) {
   
-  if (base::missing(data)) {
-    cat("    ", '\n')
-    cat("\033[1;32m  # chk22는 non numeric cell을 찾아 리포팅하는 함수 ", '\n')
-    cat("\033[1;32m  # 사용예: chk22(데이터셋) 또는, chk22(df$변수)  ", '\n')
-    cat("\033[1;32m  ---------------------------------------------- ", '\n')
-    cat("   ", '\n')
-    cat("\033[1;33m  ## Non numeric cell을 NA로 변경하는 방법 ## ", '\n')
-    cat("\033[1;33m  library(dplyr) ", '\n')
-    cat("\033[1;33m  df <- df %>% mutate(across(c(변수1, 변수2, 변수3), ~ suppressWarnings(as.numeric(as.character(.)))))  ", '\n')
-    return(cat("   ", '\n') )
-  }
-  
-    # --- [1] 입력 데이터 타입 확인 및 전처리 ---
-  # 데이터프레임이면 그대로 사용, 벡터(df$V123)면 데이터프레임으로 변환
+     if (base::missing(data)) {
+      cat("   ", "\n")
+      cat("  \033[1;33m사용예: chk22(data)  #조사를 위한 dataset 지정 \033[0m", "\n")
+      cat("  \033[1;33m사용예: chk22(data, exclude=c(변수1, 변수2, 변수3)) #chk22조사에서 제외될 변수 선택 \033[0m", "\n")
+      cat("  \033[1;33m사용예: chk22(data$변수1) #변수 1개만 조사 \033[0m", "\n")
+      cat("  \033[1;33m#------------------------------------ \033[0m", "\n")
+      cat("  \033[1;33m        \033[0m", "\n")
+      cat("  \033[1;33m# numeric cell이 아닌 것을 모두 NA로 변경하기\033[0m", "\n")
+      cat("  \033[1;33m# 모든 열에 적용 (주의: 이름, 주소 같은 문자열 열도 모두 NA가 됩니다!)\033[0m", "\n")
+      cat("  \033[1;32m data <- data %>% \033[0m", "\n")
+      cat("  \033[1;32m       mutate(across(everything(), ~ suppressWarnings(as.numeric(as.character(.))))) \033[0m", "\n")
+      cat("  \033[1;33m \033[0m", "\n")
+      return(cat("   \n"))
+    }
+
+
+  # --- [1] 데이터 타입 확인 및 전처리 ---
   if (is.data.frame(data)) {
     df_check <- data
   } else {
-    # 벡터인 경우, 입력한 변수명(예: "df$V123")을 가져옴
+    # 벡터인 경우
     var_name <- deparse(substitute(data))
-    # 이름이 너무 길거나 복잡하면 기본값 사용
-    if (length(var_name) > 1) var_name <- "Input_Vector"
-    
-    # 1열짜리 데이터프레임으로 변환
+    if (length(var_name) > 1) var_name <- "Vector"
     df_check <- data.frame(data, stringsAsFactors = FALSE)
     names(df_check) <- var_name
   }
   
-  # --- [2] 비수치 데이터 찾기 (기존 로직) ---
+  # --- [2] 제외할 변수 처리 (요청사항 1) ---
+  if (!is.null(exclude)) {
+    # 입력된 변수명들이 데이터셋에 있는지 확인하고 제거
+    existing_cols <- names(df_check)
+    target_cols <- setdiff(existing_cols, exclude)
+    
+    if (length(target_cols) == 0) {
+      cat(">>> [경고] 모든 변수가 제외되었습니다. 검사할 항목이 없습니다.\n")
+      return(NULL)
+    }
+    # 제외된 변수들을 뺀 나머지만 선택
+    df_check <- df_check[, target_cols, drop = FALSE]
+  }
+  
+  # --- [3] 비수치 데이터 찾기 ---
   report <- data.frame(
-    Column = character(),
     Row = integer(),
+    Column = character(),
     Value = character(),
     stringsAsFactors = FALSE
   )
   
-  for (col_name in names(df_check)) {
+  for (col in names(df_check)) {
+    orig <- as.character(df_check[[col]])
+    num_val <- suppressWarnings(as.numeric(orig))
     
-    original_vals <- as.character(df_check[[col_name]])
-    numeric_vals <- suppressWarnings(as.numeric(original_vals))
+    # 변환 실패(NA) & 원본은 NA 아님
+    bad_idx <- which(is.na(num_val) & !is.na(orig))
     
-    # 숫자로 변환했더니 NA가 됐는데, 원래 값은 NA가 아니었던 행 찾기
-    bad_indices <- which(is.na(numeric_vals) & !is.na(original_vals))
-    
-    if (length(bad_indices) > 0) {
-      temp_df <- data.frame(
-        Column = col_name,
-        Row = bad_indices,
-        Value = original_vals[bad_indices],
+    if (length(bad_idx) > 0) {
+      report <- rbind(report, data.frame(
+        Row = bad_idx,
+        Column = col,
+        Value = orig[bad_idx],
         stringsAsFactors = FALSE
-      )
-      report <- rbind(report, temp_df)
+      ))
     }
   }
   
-  # --- [3] 결과 출력 및 서식 정리 ---
+  # --- [4] 결과 출력 서식 설정 (요청사항 2: 행 기준) ---
   if (nrow(report) > 0) {
-    display_report <- report
+    # 1. 행(Row) 번호 순서로 정렬 (그 다음 칼럼명 순)
+    report <- report[order(report$Row, report$Column), ]
     
-    # Column 이름 중복 제거 (깔끔하게 보이기 위함)
-    if (nrow(display_report) > 1) {
-      for (i in 2:nrow(display_report)) {
-        if (report$Column[i] == report$Column[i-1]) {
-          display_report$Column[i] <- ""
+    # 2. 출력용 데이터프레임 생성 (Row를 문자로 변환)
+    disp <- report
+    disp$Row <- as.character(disp$Row)
+    
+    # 3. 중복된 Row 번호는 빈칸("") 처리하여 가독성 높임
+    if (nrow(disp) > 1) {
+      for (i in 2:nrow(disp)) {
+        # 윗 행과 Row 번호가 같으면 빈칸으로
+        if (report$Row[i] == report$Row[i-1]) {
+          disp$Row[i] <- ""
         }
       }
     }
     
-    cat(paste0(">>> 총 ", nrow(report), "개의 수치가 아닌 값이 발견되었습니다. <<<\n"))
-    return(display_report)
+    cat(paste0(">>> [발견] 수치가 아닌 값 ", nrow(report), "개 (행 기준 정렬) <<<\n"))
+    return(disp)
     
   } else {
-    cat("이상 없음: 입력한 데이터는 모두 수치로 변환 가능합니다.\n")
-    return( cat(" ", "\n") )
+    cat(">>> [정상] 제외된 열을 뺀 나머지 모든 데이터가 수치 변환 가능합니다.\n")
+    return(NULL)
   }
 }
-
