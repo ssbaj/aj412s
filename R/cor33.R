@@ -1,4 +1,3 @@
-# cor33 함수 (따옴표 없이 변수명 입력 가능)
 cor33 <- function(dataframe, target_var) {
 
 if (base::missing(dataframe)) {
