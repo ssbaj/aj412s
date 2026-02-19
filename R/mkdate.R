@@ -1,4 +1,4 @@
-mkdate_series <- function(df, start_y, type = "y", start_p = 1) {
+mkdate <- function(df, start_y, type = "y", start_p = 1) {
   # 1. 안내 메시지 (데이터프레임 누락 시)
   if (base::missing(df)) {
     cat("Usage: mkdate_series(df, start_y, type=y/m/q, start_p=시작월/분기)\n")
