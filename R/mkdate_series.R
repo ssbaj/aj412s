@@ -1,111 +1,66 @@
-mkdate_series<-function(df, start_y, start_m=0, mq=0 ){
-
-if (base::missing(df)) {
-	    cat("  df<-as.data.frame(df) ", '\n')
-		cat("  Input: 연도=2025, start_m=3, ", '\n')
-		cat("         mq=4(분기별자료 지정) 또는, mq=12(월별자료 지정) ", '\n')
-		cat(" # ---------------------------------------------------------------- #   ", '\n')
-		cat("  Year   : df<-mkdate_series(df, 2025)   ", '\n')
-		cat("  Quarter: df<-mkdate_series(df, 2025, start_m=3/6/9/12, 분기별자료라고 지정 mq=4)   ", '\n')
-		cat("  Monthly: df<-mkdate_series(df, 2025, start_m=1/2..11/12, 월별자료라고 지정 mq=12)   ", '\n')
-		cat(" # ---------------------------------------------------------------- #   ", '\n')
-		return( cat("  df<-mkdate_series(df, 시작연도:2025, 시작달:11, 월별자료:12)   ", '\n') )  
-		}
-
-df<-as.data.frame(df)
-n<-nrow(df)
-tmp1<-rep(NA,n)
-tmp2<-rep(NA,n)
-tmp3<-rep(NA,n)
-
-## monthly data START ----------------
-if(start_m>0 & mq==12) { 
-
-for(i in 1:n){
-	if(start_m==12) 
-		{tmp2[i]<-start_m
-		 start_m<-1 
-		 tmp1[i]<-start_y
-		 start_y<-start_y+1}
-	else{
-		 tmp2[i]<-start_m
-		 start_m<-start_m+1
-		 tmp1[i]<-start_y
-		} 
-}
-
-tmp1<-as.character(tmp1)
-tmp2<-as.character(tmp2)
-
-for (i in 1:n){
-	if(nchar(tmp2[i])==1) {
-	tmp2[i]<-paste0('0', tmp2[i], sep='')
-	} 
+mkdate_series <- function(df, start_y, type = "y", start_p = 1) {
+  # 1. 안내 메시지 (데이터프레임 누락 시)
+  if (base::missing(df)) {
+    cat("Usage: mkdate_series(df, start_y, type=y/m/q, start_p=시작월/분기)\n")
+    cat(" - type=y: 연 단위 (12월 31일 기준)\n")
+    cat(" - type=m: 월 단위 (start_p에 시작 월 입력, 기본값 1)\n")
+    cat(" - type=q: 분기 단위 (start_p에 시작 분기 입력 1~4, 기본값 1)\n")
+    return(invisible(NULL))
   }
+
+  # --- 추가된 부분: 따옴표 없이 입력된 인자를 문자로 변환 ---
+  # 사용자가 type = m 처럼 입력하면 이를 "m"으로 바꿉니다.
+  # 이미 "m"으로 입력한 경우에도 문제없이 작동합니다.
+  type_str <- as.character(substitute(type))
+  # -----------------------------------------------------
+
+  df <- as.data.frame(df)
+  n <- nrow(df)
+  dates <- vector("character", n)
+  
+  # 2. 날짜 생성 로직 (이제 type 대신 type_str 사용)
+  if (type_str == "y") {
+    for (i in 1:n) {
+      dates[i] <- sprintf("%d-12-31", start_y + i - 1)
+    }
+    
+  } else if (type_str == "m") {
+    curr_y <- start_y
+    curr_m <- start_p
+    for (i in 1:n) {
+      dates[i] <- sprintf("%d-%02d-01", curr_y, curr_m)
+      curr_m <- curr_m + 1
+      if (curr_m > 12) {
+        curr_m <- 1
+        curr_y <- curr_y + 1
+      }
+    }
+    
+  } else if (type_str == "q") {
+    curr_y <- start_y
+    curr_q <- start_p
+    q_months <- c(3, 6, 9, 12)
+    
+    for (i in 1:n) {
+      dates[i] <- sprintf("%d-%02d-01", curr_y, q_months[curr_q])
+      curr_q <- curr_q + 1
+      if (curr_q > 4) {
+        curr_q <- 1
+        curr_y <- curr_y + 1
+      }
+    }
+  } else {
+    stop("type은 y, m, q 중 하나여야 합니다.")
+  }
+
+  # 3. 데이터 결합 및 정렬
+  df$DATE <- as.Date(dates)
+  
+  if (requireNamespace("dplyr", quietly = TRUE)) {
+    df <- dplyr::relocate(df, DATE)
+  } else {
+    df <- df[, c("DATE", setdiff(names(df), "DATE"))]
+  }
+  
+  return(df)
 }
-
-## monthly data END ----------------
-
-
-# quarterly data START --------------------------
-
-if(start_m>0 & mq==4) {
-	for(i in 1:n){
-
-if( (start_m != 3) & (start_m !=6 ) & (start_m != 9) & (start_m!=12) ) {
-	cat(' ', '\n')
-	cat('  Starting month should be one of 3, 6, 9, 12. ', '\n')
-	cat(' ', '\n')
-	break
-}
-
-	if(start_m==12) 
-		{tmp2[i]<-start_m
-		 start_m<-3
-		 tmp1[i]<-start_y
-		 start_y<-start_y+1}
-	else{
-		 tmp2[i]<-start_m
-		 start_m<-start_m+3
-		 tmp1[i]<-start_y
-		} 
-}
-
-tmp1<-as.character(tmp1)
-tmp2<-as.character(tmp2)
-
-for (i in 1:n){
-		if(nchar(tmp2[i])==1) {
-		tmp2[i]<-paste0('0', tmp2[i], sep='')
-		} 
-	}
-}
-
-# quarterly data END --------------------------
-
-if(start_m !=0) {
-	for (i in 1:n){
-		tmp3[i]<-paste0( tmp1[i], '-',tmp2[i], '-01', sep='')
-		}
-
-DATE<-as.Date(tmp3)
-df<-cbind(df, DATE)
-}
-
-# yearly data START --------------------------
-if(start_m==0) {
-	for (i in 1:n){
-	  tmp_start_y <- (start_y +i - 1)
-	  tmp3[i]<-paste0( tmp_start_y,'-12-31', sep='')
-	}
-DATE<-as.Date(tmp3)
-df<-cbind(df, DATE)
-}
-# yearly data END --------------------------
-
-suppressPackageStartupMessages(library("dplyr"))
-df <- df%>%relocate(DATE)
-
-return(df)
-}
-
