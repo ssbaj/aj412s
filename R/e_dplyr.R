@@ -8,6 +8,8 @@ cat("  df %>% group_by(브랜드) %>% summarize(편의성평균=mean(conv,na.rm=
 cat("   ", '\n')
 cat("  df$brand_se <- recode(df$brand , 'old1' = 'new1', 'old2' = 'new2')) \033[1;32m# recode는 파이프 명령문 사용X \033[0m ", '\n')
 cat("   ", '\n')
+cat("  df$new_v1 <- recode_values(df$v1, 1~4, 2~3, 3~2 , 4~1, 5~NA) \033[1;32m# recode_values는 파이프 명령문 사용X \033[0m ", '\n')
+cat("   ", '\n')
 cat("  NewDataset <- df %>% select(브랜드, 성별) ", '\n')
 cat("   ", '\n')  
 cat("  NewDataset <- merge(data1, data2, by='id')  ", '\n')
