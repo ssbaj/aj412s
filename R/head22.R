@@ -1,4 +1,4 @@
-headd <- function(df) {
+head22 <- function(df) {
   n <- nrow(df)
   
   # 각 지점의 시작 인덱스 계산
