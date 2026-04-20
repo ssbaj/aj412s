@@ -1,14 +1,14 @@
-\name{selvar}
-\alias{selvar}
+\name{selvar22}
+\alias{selvar22}
 \title{Select variables}
 \usage{
-selvar()
+selvar22()
 }
 \description{
 Selecting variables
 }
 \examples{
 
-## selvar(dataset)
+## selvar22(data_set)
 
 }
