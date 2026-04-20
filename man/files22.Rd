@@ -1,15 +1,15 @@
-\name{file22}
-\alias{file22}
+\name{files22}
+\alias{files22}
 \title{Choose files}
 \usage{
-file22()
+files22()
 }
 \description{
 Choose files
 }
 \examples{
 
- df<-file22()
+ df<-files22()
  # Loading files : xlsx, xls, csv, txt, sav, dat
 
 }

@@ -1,4 +1,4 @@
-file22 <- function() {
+files22 <- function() {
   # 1. 필수 패키지 확인 (인코딩 분석을 위해 readr 포함)
   pkg_list <- c("tcltk", "readxl", "haven", "data.table", "readr")
   for (pkg in pkg_list) {
