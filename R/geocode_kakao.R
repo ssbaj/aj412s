@@ -11,7 +11,7 @@ if (base::missing(REST_API_KEY)) {
     cat(" \033[1;34m#                     td1<-td(cs~1, to='quarterly', converstion='last', method='denton-cholette') ", '\n')
     cat(" \033[1;34m# ----------------------------------------------------- ", '\n')
     cat(" \033[1;34m# library(httr); library(jsonlite); library(stringr) ", '\n')
-    cat(" \033[1;34m# my_kakao_rest <- '7af181-9d01257-shimbi9645-elan234-ecd75-stu843-e16354-pdi323-5f0675b9-no' ", '\n')
+    cat(" \033[1;34m# my_kakao_rest <- 'shimbiro342-5439f3d7eef2c504d3f7dad5c5d7a610' ", '\n')
     cat(" \033[1;34m# 지번 주소 또는, 도로명 주소를 addr에 대입 \033[0m ", '\n')
     cat(" \033[1;34m# addr <- '경기도 수원시 영통구 원천동 원천동 산5-1' \033[0m ", '\n')
     cat(" \033[1;34m# geocode_kakao(my_kakao_rest, addr) \033[0m ", '\n')
@@ -19,7 +19,7 @@ if (base::missing(REST_API_KEY)) {
     cat(" \033[1;34m# setwd('C:/Users/사용자이름/Documents')  ", '\n')
     cat(" \033[1;34m# ----------------------------------------------------- ", '\n')
     cat(" \033[1;32m              \033[0m ", '\n')
-    cat(" \033[1;32m library(httr); library(jsonlite); library(stringr); library(aj412s2)  \033[0m ", '\n')
+    cat(" \033[1;32m library(httr); library(jsonlite); library(stringr); library(aj412s)  \033[0m ", '\n')
     cat(" \033[1;34m my_kakao_rest <- '7af181-9d01257-shimbi9645-elan234-ecd75-stu843-e16354-pdi323-5f0675b9-no' ", '\n')
     cat(" \033[1;34m    \033[0m ", '\n')
     cat(" \033[1;34m n<-nrow(new_df)   \033[0m ", '\n')
@@ -72,9 +72,9 @@ for (p in pkgs) {
 }
 
 
-# aj412s2 설치 여부 확인
-if (!requireNamespace("aj412s2", quietly = TRUE)) {
-  devtools::install_github("ssbaj/aj412s2")  # 실제 GitHub 경로로 수정 필요
+# aj412s 설치 여부 확인
+if (!requireNamespace("aj412s", quietly = TRUE)) {
+  devtools::install_github("ssbaj/aj412s")  # 실제 GitHub 경로로 수정 필요
 }
 
 ## 패키지 설치 끝 --------------------------------------------

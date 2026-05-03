@@ -9,9 +9,9 @@ Converting Road address to Geocode
 }
 \examples{
 
-  library(httr); library(jsonlite); library(stringr)  
-  my_apikey <- 'Your Vworld Apikey'  
- # my_apikey <- 'SHIMBIRO455-A612BFF9-049A-ELCA888-3B10-BED9-B79A19STU8884PID1038C6'  
+library(httr); library(jsonlite); library(stringr)  
+  my_vworld <- 'Your Vworld Apikey'  
+# my_vworld <- 'SHIMBIRO455-5C24FB8F-7481-33FB-B45B-CF7047E28830'  
 
 #도로명 주소를 addr_road에 입력 ----   
   address_road <- '경기도 수원시 월드컵로 206'   

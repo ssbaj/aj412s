@@ -11,7 +11,7 @@ geocode_road<-function(vworld_apikey, addr){
     cat(" \033[1;34m# TS자료: 연 -> 분기: library(tempdisagg) ", '\n')
     cat(" \033[1;34m#                     td1<-td(cs~1, to='quarterly', converstion='last', method='denton-cholette') ", '\n')
     cat(" \033[1;34m# ----------------------------------------------------- ", '\n')
-    cat(" \033[1;34m# my_vworld <- 'SHIMBIRO455-A612BFF9-049A-ELCA888-3B10-BED9-B79A191038C6-yes' ", '\n')
+    cat(" \033[1;34m# my_vworld <- 'SHIMBIRO455-5C24FB8F-7481-33FB-B45B-CF7047E28830' ", '\n')
     cat(" \033[1;34m# 도로명 주소를 addr_road에 입력 ---- \033[0m ", '\n')
     cat(" \033[1;34m# addr_road <- '경기도 수원시 월드컵로 206' \033[0m ", '\n')
     cat(" \033[1;34m# geocode_road(my_vworld, addr_road) \033[0m ", '\n')
@@ -21,7 +21,7 @@ geocode_road<-function(vworld_apikey, addr){
     cat(" \033[1;34m# setwd('C:/Users/사용자이름/Documents')  ", '\n')
     cat(" \033[1;34m# ----------------------------------------------------- ", '\n')
     cat(" \033[1;32m# 주소 만들기 = 시군구 + 번지  ", '\n')
-    cat(" \033[1;34m library(aj412s2); library(dplyr) \033[0m ", '\n')
+    cat(" \033[1;34m library(aj412s); library(dplyr) \033[0m ", '\n')
     cat(" \033[1;34m  \033[0m ", '\n')
     cat(" \033[1;34m df<-openxlsx(경기도_실거래가_원본.xlsx) \033[0m ", '\n')
     cat(" \033[1;34m # df 데이터셋의 변수: 시군구, 번지, 거래금액만원, 평당금액 \033[0m ", '\n')
@@ -90,9 +90,9 @@ for (p in pkgs) {
   }
 }
 
-# aj412s2 설치 여부 확인
-if (!requireNamespace("aj412s2", quietly = TRUE)) {
-  devtools::install_github("ssbaj/aj412s2")  # 실제 GitHub 경로로 수정 필요
+# aj412s 설치 여부 확인
+if (!requireNamespace("aj412s", quietly = TRUE)) {
+  devtools::install_github("ssbaj/aj412s")  # 실제 GitHub 경로로 수정 필요
 }
 
 ## 패키지 설치 끝 --------------------------------------------
