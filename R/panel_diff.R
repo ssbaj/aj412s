@@ -1,6 +1,20 @@
 panel_diff <- function(p_df) {
 
 if (base::missing(p_df)) {
+cat("   ", '\n')
+cat("  # 1. 예제 df를 만들기위한 벡터 생성 --------- ", '\n')
+cat("  index <- c('A1', 'A2', 'A3', 'A4', 'A5', 'A6', 'A7', 'A8', 'A9', 'A10', 'A11', 'A12') ", '\n')
+cat("  area <- c('A', 'A', 'A', 'B', 'B', 'B', 'C', 'C', 'C', 'D', 'D', 'D') ", '\n')
+cat("  year <- c(2001, 2002, 2003, 2001, 2002, 2003, 2001, 2002, 2003, 2001, 2002, 2003) ", '\n')
+cat("  변수1 <- c(10, 14, 18, 21, 23, 25, 32, 36, 40, 42, 44, 46) ", '\n')
+cat("  변수2 <- c(13, 68, 86, 23, 78, 98, 34, 79, 92, 53, 83, 100) ", '\n')
+cat("   ", '\n')
+cat("  # 2. 벡터들을 모아 데이터 프레임 생성 ", '\n')
+cat("  df <- data.frame(index, ind2, date2, 변수1, 변수2) ", '\n')
+cat("   ", '\n')
+cat("  # plm패키지의 pdata.frame을 사용: 패널데이터 지정 -> 차분difference ", '\n')
+cat("  # df 차분. 단, area, year, index, 문자변수는 차분 제외  ----------- ", '\n')
+cat("   ", '\n')
 cat("  library(plm) ", '\n')
 cat("  panel_data <- pdata.frame(panel, index = c('area', 'year'))  ", '\n')
 return(cat("  diffDataSet<-panel_diff(panel_data) ", '\n'))
