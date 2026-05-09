@@ -13,7 +13,8 @@ Making excel file for recording results
  table22(lm결과)
  table22(logit결과)
 
- RobustSE_OLS결과<-coeftest(OLS분석결과, vcov = vcovHC(re, type = 'HC1'))
+ library(sandwich); library(lmtest)
+ RobustSE_OLS결과<-coeftest(X결과tmp, vcov = vcovHC(X결과tmp, type = 'HC1'))
  table22(RobustSE_OLS결과)
 
  table22(mlogit결과)
