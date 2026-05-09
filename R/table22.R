@@ -8,17 +8,59 @@ table22 <- function(input_data, filenames = NULL, model_for_r2 = NULL) {
     filenames <- paste0("Re", time_stamp, ".xlsx")
   }
   
+  # =========================================================================
+  # [수정] 상관계수 감지 시 데이터프레임 경고(Warning) 완벽 차단
+  # =========================================================================
+  is_cor <- FALSE
+  try({
+    if (!is.null(dim(input_data)) && ncol(input_data) >= 2) {
+      
+      # 데이터가 이미 데이터프레임이면 그대로 값을 확인 (desc22 등)
+      if (is.data.frame(input_data)) {
+        val12 <- input_data[1, 2]
+      } else {
+        # 특수 객체(cor22)인 경우에만 별도로 확인함
+        check_mat <- matrix(input_data, nrow = nrow(input_data))
+        val12 <- check_mat[1, 2]
+      }
+      
+      # 1행 2열이 비어있거나(blank), NA인 경우 상관계수로 판단
+      if (is.na(val12) || trimws(as.character(val12)) == "") {
+        is_cor <- TRUE
+      }
+    }
+  }, silent = TRUE)
+
+  if (is_cor) {
+    message("상관계수 행렬 ---- ")
+    
+    if (is.data.frame(input_data)) {
+      df_cor <- input_data
+    } else {
+      raw_mat <- matrix(input_data, nrow = nrow(input_data), dimnames = dimnames(input_data))
+      df_cor <- as.data.frame(raw_mat, stringsAsFactors = FALSE)
+    }
+    
+    if (!"Variable" %in% colnames(df_cor)) {
+      df_cor <- cbind(Variable = rownames(df_cor), df_cor)
+    }
+    rownames(df_cor) <- NULL
+    
+    print(df_cor)
+    write_xlsx(df_cor, path = filenames)
+    return(cat("\n[성공] 상관계수 파일 저장 완료:", filenames, "\n"))
+  }
+  # =========================================================================
+
   final_table <- NULL
   
   # 2. 클래스별 데이터 처리
   if (inherits(input_data, "multinom")) {
-    # [수정] multinom 객체 직접 처리 로직 추가
-    message("다항 로짓(multinom) 결과를 직접 처리합니다.")
+    message("다항 로짓(multinom) 결과 처리 -----")
     sum_obj <- summary(input_data)
     coef_matrix <- as.matrix(sum_obj$coefficients)
     se_matrix <- as.matrix(sum_obj$standard.errors)
     
-    # 카테고리가 1개인 경우 처리
     if (nrow(coef_matrix) == 1) rownames(coef_matrix) <- "Response"
     
     z_matrix <- coef_matrix / se_matrix
@@ -38,7 +80,6 @@ table22 <- function(input_data, filenames = NULL, model_for_r2 = NULL) {
     }
     final_table <- do.call(rbind, combined_list)
     
-    # 모델 정보 추가
     summary_info <- data.frame(
       Category = "Model Summary", Variable = c("Observations", "AIC", "BIC"),
       Estimate = c(nrow(input_data$fitted.values), round(AIC(input_data), 2), round(BIC(input_data), 2)),
@@ -47,7 +88,6 @@ table22 <- function(input_data, filenames = NULL, model_for_r2 = NULL) {
     final_table <- rbind(final_table, summary_info)
     
   } else if (inherits(input_data, "glm")) {
-    # 로짓 분석(glm)
     res_mat <- summary(input_data)$coefficients
     final_table <- data.frame(
       Variable = rownames(res_mat),
@@ -65,7 +105,6 @@ table22 <- function(input_data, filenames = NULL, model_for_r2 = NULL) {
     final_table <- rbind(final_table, summary_info)
     
   } else if (inherits(input_data, "lm")) {
-    # 일반 회귀분석(lm)
     res_mat <- summary(input_data)$coefficients
     final_table <- data.frame(
       Variable = rownames(res_mat),
@@ -83,7 +122,6 @@ table22 <- function(input_data, filenames = NULL, model_for_r2 = NULL) {
     final_table <- rbind(final_table, r2_rows)
     
   } else if (inherits(input_data, "coeftest")) {
-    # Robust 결과
     res_mat <- as.matrix(input_data)
     final_table <- data.frame(
       Variable = rownames(res_mat),
@@ -95,7 +133,6 @@ table22 <- function(input_data, filenames = NULL, model_for_r2 = NULL) {
     )
     
   } else {
-    # summary_mlogit 결과물(data.frame) 또는 desc22 결과물
     final_table <- as.data.frame(input_data)
     if (!"Variable" %in% colnames(final_table)) {
       final_table <- cbind(Variable = rownames(final_table), final_table)
