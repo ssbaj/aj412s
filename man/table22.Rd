@@ -9,15 +9,18 @@ Making excel file for recording results
 }
 \examples{
 
- table22(desc22결과)
- table22(lm결과)
- table22(logit결과)
-
+ 예를 들어
  library(sandwich); library(lmtest)
- RobustSE_OLS결과<-coeftest(X결과tmp, vcov = vcovHC(X결과tmp, type = 'HC1'))
- table22(RobustSE_OLS결과)
+ re<-lm(satprice~conv+age+gender,data=df)
+ summary(re)
+ coeftest(re, vcov = vcovHC(re, type = 'HC1'))
+ 
+ 화면에 나타나는 분석결과를 
+ 분석결과를 임의의 text(예 mytest.txt)파일에 저장한다
 
- table22(mlogit결과)
- 엑셀파일은 Re년도월일시간초.xlsx파일로 저장됨
+ table22()
+ 
+ 화면이 나타나면 mytest.txt파일을 선택하면 결과는
+ 엑셀파일로 저장된다
 
 }
