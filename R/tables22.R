@@ -1,4 +1,4 @@
-table22 <- function() {
+tables22 <- function() {
   if (!requireNamespace("writexl", quietly = TRUE)) install.packages("writexl")
   library(writexl)
   library(tcltk)
