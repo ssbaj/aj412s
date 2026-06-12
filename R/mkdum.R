@@ -2,8 +2,8 @@ mkdum <- function(name_dataset, select_columns) {
 
 if (base::missing(name_dataset)) {
 cat(" \033[1;36m# Examples ---------- \033[0m", '\n' )
-cat("\033[1;36m Adata<-as.data.frame(Adata) \033[0m", '\n')
-return( cat("\033[1;36m COMMAND: Adata<-mkdum(Adata, variable) \033[0m", '\n') )
+cat("\033[1;36m df<-as.data.frame(df) \033[0m", '\n')
+return( cat("\033[1;36m COMMAND: df<-mkdum(df, variable) \033[0m", '\n') )
 }
 
 
