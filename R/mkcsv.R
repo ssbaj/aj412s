@@ -1,14 +1,15 @@
 mkcsv <- function(dataset, file_path, encoding = "EUC-KR") {
 
   if (base::missing(dataset)) {
-    cat("\033[1;32m# mkcsv(데이터셋, 새로운파일명.csv ) \033[0m\n")
+    cat("\033[1;32m# mkcsv(데이터셋, '새로운파일명.csv') \033[0m\n")
     cat("\033[1;32m# csv파일 저장 디폴트: EUC-KR \033[0m\n")
-    cat("\033[1;32m# mkcsv(데이터셋, 새로운파일.csv, encoding = 'CP949') \033[0m\n")
-    return(cat("\033[1;32m# mkcsv(데이터셋, 새로운파일명.csv, encoding = 'UTF-8') \033[0m\n"))
+    cat("\033[1;32m# mkcsv(데이터셋, '새로운파일.csv', encoding = 'CP949') \033[0m\n")
+    return(cat("\033[1;32m# mkcsv(데이터셋, '새로운파일명.csv', encoding = 'UTF-8') \033[0m\n"))
   }
 
-  # file_path가 따옴표 없이 들어오면 문자로 변환
-  file_path <- deparse(substitute(file_path))
+  if (base::missing(file_path) || !is.character(file_path)) {
+    stop("file_path는 반드시 따옴표로 감싼 문자열이어야 합니다. 예) mkcsv(데이터셋, '파일명.csv')")
+  }
 
   # 확장자 자동 보정
   if (!grepl("\\.csv$", file_path, ignore.case = TRUE)) {

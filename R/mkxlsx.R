@@ -2,12 +2,13 @@ mkxlsx <- function(dataset, file_path) {
 
   if (base::missing(dataset)) {
     cat("\033[1;32m# 데이터셋을 엑셀 xlsx 파일로 저장하기 ----- \033[0m\n")
-    cat("\033[1;32m# mkxlsx(데이터셋, 새로운파일명.xlsx ) \033[0m\n")
+    cat("\033[1;32m# mkxlsx(데이터셋, '새로운파일명.xlsx') \033[0m\n")
     return(invisible(NULL))
   }
 
-  # �따옴표 없이 입력된 file_path를 문자열로 변환
-  file_path <- deparse(substitute(file_path))
+  if (base::missing(file_path) || !is.character(file_path)) {
+    stop("file_path는 반드시 따옴표로 감싼 문자열이어야 합니다. 예) mkxlsx(데이터셋, '파일명.xlsx')")
+  }
 
   #  확장자 자동 보정 (.xlsx 없으면 추가)
   if (!grepl("\\.xlsx$", file_path, ignore.case = TRUE)) {
