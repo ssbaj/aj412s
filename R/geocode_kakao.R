@@ -36,41 +36,24 @@ if (!"addr" %in% names(df)) {
 }
 
 n <- nrow(df)
-df$long_x <- NA
-df$lat_y  <- NA
+df$lat <- NA
+df$lon <- NA
 
 for (i in seq_len(n)) {
 
   address <- df$addr[i]
 
-  longlat <- tryCatch({
-    response <- httr::GET(
-      url = "https://dapi.kakao.com/v2/local/search/address.json",
-      query = list(query = address),
-      httr::add_headers(Authorization = paste0("KakaoAK ", REST_API_KEY))
-    )
-    varsx <- httr::content(response, as = "text", encoding = "UTF-8")
-    vars <- jsonlite::fromJSON(varsx)
-    tmp <- data.frame(vars)
+  # 주소 하나씩 get_geo()로 조회 (get_geo.R 참조)
+  latlon <- get_geo(REST_API_KEY, address)
 
-    if (nrow(tmp) == 0) {
-      NULL
-    } else {
-      c(tmp$documents.x[1], tmp$documents.y[1])  # 경도(x), 위도(y)
-    }
-  }, error = function(e) {
-    NULL
-  })
-
-  if (is.null(longlat) || length(longlat) < 2) {
-    df$long_x[i] <- NA
-    df$lat_y[i]  <- NA
+  if (is.null(latlon)) {
+    cat(sprintf("[%d/%d] '%s' 좌표를 찾지 못했습니다.\n", i, n, address))
     next
   }
 
-  df$long_x[i] <- longlat[1]
-  df$lat_y[i]  <- longlat[2]
-  cat(longlat, i, ':번째', '\n')
+  df$lat[i] <- latlon["lat"]
+  df$lon[i] <- latlon["lon"]
+  cat(sprintf("[%d/%d] %s -> lat: %s, lon: %s\n", i, n, address, latlon["lat"], latlon["lon"]))
 }
 
 return(df)
