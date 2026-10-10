@@ -1,8 +1,8 @@
-\name{chdir}
-\alias{chdir}
+\name{mydir}
+\alias{mydir}
 \title{Change Directory}
 \usage{
-chdir()
+mydir()
 }
 \description{
 Changing Directory Folders
@@ -11,6 +11,6 @@ Changing Directory Folders
 
 # Examples ----------  
 
- chdir() # defining folders
+ mydir() # defining folders
  
 }
