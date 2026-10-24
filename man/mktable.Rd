@@ -12,6 +12,9 @@ Making Table
 # Examples ----------  
  library(aj412s)
  tmp<-desc22(BasicData)
- df <- mktable(tmp)
+ mktable(tmp)
+
+ re<-lm(expend~age+gender,data=df)
+ mktable(summary(re))
  
 }
