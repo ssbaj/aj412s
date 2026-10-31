@@ -9,6 +9,16 @@
 # 화면에 출력한 뒤 바로 실행하여 df에서 해당 행을 삭제하고 행 이름을 1번부터 다시 매긴다 (run = FALSE면 출력만).
 
 delrow <- function(df, rows, run = TRUE) {
+
+  if (base::missing(df)) {
+        cat("   ", "\n")
+	cat(" \033[1;31mdelrow(df, 3)              # df <- df[-3, ]  \033[0m", "\n")
+        cat(" \033[1;31mdelrow(df, c(3, 5, 8))     # df <- df[-c(3, 5, 8), ]  \033[0m", "\n")
+        cat("   ", "\n")
+        return(invisible(NULL))
+    }
+
+  
   dname <- deparse(substitute(df))[1]
   stopifnot(is.data.frame(df), is.numeric(rows), length(rows) > 0)
 

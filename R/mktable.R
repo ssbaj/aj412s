@@ -1,16 +1,26 @@
 # mktable.R
-# 사용법:  source("mktable.R");  mktable(print(result))
-#   -> print(result)의 화면 출력을 표로 변환하여 result_YYYYMMDD_HHMMSS.csv (UTF-8, BOM 포함 / 엑셀에서 한글 정상) 로 저장
+# 사용법:  mktable(print(result))
+#   -> print(result)의 화면 출력을 표로 변환하여 result_YYYYMMDD_HHMMSS.xlsx 로 저장
 #   지원: (1) ┌─┐ 박스 표  (2) 공백 정렬 표(요약통계, 상관행렬, data.frame 등)
 #         (3) lm 회귀분석 summary  (+) tibble  (4) glm(logit) summary  (그 외는 줄 단위로 저장)
 
 mktable <- function(x, file = NULL, dir = getwd(), quiet = FALSE) {
+
+    if (base::missing(x)) {
+    cat("  \033[1;31m  # ---------------------------------- ", '\n')
+    cat("  \033[1;31m  mktable(print(result)) ", '\n')
+    cat("  \033[1;31m  print(result)의 화면 출력을 표로 변환하여 result_YYYYMMDD_HHMMSS.xlsx 로 저장 ", '\n')
+    cat("  \033[1;31m  # ---------------------------------- ", '\n')
+    return( cat("   ", '\n') )  }
+
+  
+  
   expr <- substitute(x)
   # 저장 이름: print(result) / result 에서 가장 안쪽 변수명 추출
   nm <- expr
   while (is.call(nm) && length(nm) >= 2) nm <- nm[[2]]
   nm <- if (is.name(nm)) as.character(nm) else "result"
-  if (is.null(file)) file <- file.path(dir, paste0(nm, "_", format(Sys.time(), "%Y%m%d_%H%M%S"), ".csv"))
+  if (is.null(file)) file <- file.path(dir, paste0(nm, "_", format(Sys.time(), "%Y%m%d_%H%M%S"), ".xlsx"))
 
   # 식을 평가하면서 출력 캡처 (print(result)이면 print 출력, 그냥 result이면 print 해서 캡처)
   out <- utils::capture.output({
@@ -20,7 +30,7 @@ mktable <- function(x, file = NULL, dir = getwd(), quiet = FALSE) {
   if (!quiet) cat(out, sep = "\n")
 
   m <- .mk_parse(out)
-  .mk_write_csv(m, file)
+  .mk_write_xlsx(m, file)
   if (!quiet) message("저장: ", normalizePath(file, mustWork = FALSE))
   invisible(m)
 }
@@ -126,11 +136,24 @@ mktable <- function(x, file = NULL, dir = getwd(), quiet = FALSE) {
 # 그 외: 한 줄 = 한 행
 .mk_lines <- function(lines) matrix(lines, ncol = 1)
 
-# ---- CSV 쓰기 (UTF-8 + BOM) --------------------------------------------
-.mk_write_csv <- function(m, file) {
-  q <- function(s) ifelse(grepl("[\",\n]", s), paste0("\"", gsub("\"", "\"\"", s), "\""), s)
-  body <- apply(matrix(q(enc2utf8(m)), nrow(m)), 1, paste, collapse = ",")
-  con <- file(file, "wb"); on.exit(close(con))
-  writeBin(as.raw(c(0xEF, 0xBB, 0xBF)), con)
-  writeBin(charToRaw(enc2utf8(paste0(paste(body, collapse = "\r\n"), "\r\n"))), con)
+# ---- XLSX 쓰기 (writexl) ------------------------------------------------
+# 첫 행은 열 제목, 나머지는 본문. 본문 열이 모두 숫자 형태이면 숫자 셀로 저장
+.mk_write_xlsx <- function(m, file) {
+  if (!requireNamespace("writexl", quietly = TRUE)) install.packages("writexl")
+  m <- enc2utf8(m)
+  hdr <- m[1, ]
+  body <- m[-1, , drop = FALSE]
+  num <- "^[<>]?\\s*-?[0-9.]+(?:[eE][-+]?[0-9]+)?$"
+  df <- lapply(seq_len(ncol(body)), function(j) {
+    v <- trimws(body[, j])
+    nz <- v[nzchar(v)]
+    if (length(nz) > 0 && all(grepl(num, nz, perl = TRUE)) && !any(grepl("[<>]", nz))) {
+      out <- suppressWarnings(as.numeric(v)); out[!nzchar(v)] <- NA; out
+    } else {
+      v[!nzchar(v)] <- NA; v
+    }
+  })
+  names(df) <- ifelse(nzchar(hdr), hdr, paste0("V", seq_along(hdr)))
+  names(df) <- make.unique(names(df))
+  writexl::write_xlsx(as.data.frame(df, check.names = FALSE, stringsAsFactors = FALSE), file)
 }

@@ -2,16 +2,21 @@
 # 사용법:
 #   source("mygraph.R")
 #   mygraph(df)
-#
-# 팝업(RStudio에서는 dialog, 그 외에는 브라우저)에 변수 리스트가 뜨고,
-# x, y 와 그래프 유형(line / scatter / line+scatter / lm / lm+scatter / spline / spline+scatter / ci)을 고르면
-# ggplot2 그래프와 그 아래에 해당 ggplot2 R 코드가 표시된다.
 
 for (pkg in c("shiny", "ggplot2")) {
   if (!requireNamespace(pkg, quietly = TRUE)) install.packages(pkg)
 }
 
 mygraph <- function(df) {
+
+  if (base::missing(df)) {
+        cat("   ", "\n")
+        cat("  \033[1;33m사용예: mygraph(df)  # mygraph에 df데이터셋 지정 --- \033[0m", "\n")
+        cat("   ", "\n")
+        return(invisible(NULL))
+    }
+
+  
   stopifnot(is.data.frame(df))
   library(shiny)
   library(ggplot2)
