@@ -107,9 +107,14 @@ mygraph <- function(df) {
       if (!isTRUE(input$ident)) return("ident 옵션을 체크하고 그래프의 점을 클릭하세요.")
       i <- clicked()
       if (length(i) == 0) return("선택된 점이 없습니다. 점을 클릭하세요.")
+      # 반올림 없이 원자료 값을 그대로 출력 (숫자는 15자리 유효숫자, 과학표기 방지)
+      raw_fmt <- function(v) {
+        if (is.numeric(v)) format(v, digits = 15, scientific = FALSE, trim = TRUE)
+        else as.character(v)
+      }
       sprintf("행번호: %d   (%s = %s, %s = %s)", i,
-              input$x, format(df[[input$x]][i]),
-              input$y, format(df[[input$y]][i]))
+              input$x, raw_fmt(df[[input$x]][i]),
+              input$y, raw_fmt(df[[input$y]][i]))
     })
 
     output$code <- renderText(code())
