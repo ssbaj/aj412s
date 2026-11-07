@@ -1,10 +1,12 @@
 del22 <- function(dataset_name, ...) {
 
-dataset_name<-as.data.frame(dataset_name)
-  #-------------------------
-  if (base::missing(dataset_name)) {
+if (base::missing(dataset_name)) {
+    cat("    ", '\n')
     cat("  To delete variables(var1 and var2) from data set, use following command  ", '\n')
-    return(cat("  df2<-del22(df, var1, var2) "))  }
+	cat("  new_df <- del22(df, var1, var2) ", '\n')
+    return(cat("    ", '\n'))  }
+
+dataset_name<-as.data.frame(dataset_name)
   
   if (!require(dplyr)) {
     cat('Automatically Installing dplyr package because','\n')

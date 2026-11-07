@@ -4,11 +4,13 @@ newplot <- function(data, x, y, col = "black", new = FALSE, ...) {
   # new = FALSE이면 par(new = TRUE)를 실행하지 않는다.
 
   if (base::missing(data)) {
+     cat("  ", '\n')
      cat("\033[1;32m  # 명령문: newplot(데이터셋, x변수, y변수, 컬러, par(new=FALSE) ) \033[0m ", '\n')
-     cat("  # new: par(new = TRUE) 실행 여부 (TRUE/FALSE, 기본값 FALSE)", '\n')
-     cat("  newplot(df, Age, Income)", '\n')
-     cat("  newplot(df, Age, Income, red)", '\n')
-     cat("  newplot(df, Age, Income, TRUE, 'red')", '\n')
+     cat("  ", '\n')
+     cat("    new: par(new = TRUE) 실행 여부 (TRUE/FALSE, 기본값 FALSE)", '\n')
+     cat("    newplot(df, Age, Income)", '\n')
+     cat("    newplot(df, Age, Income, red)", '\n')
+     cat("    newplot(df, Age, Income, TRUE, 'red')", '\n')
      cat("  ", '\n')
      cat("  • type = 'p': 포인트(Points)만 그리기 (기본값)", '\n')
      cat("  • type = 'l': 라인(Lines)만 그리기", '\n')
@@ -29,8 +31,6 @@ newplot <- function(data, x, y, col = "black", new = FALSE, ...) {
      cat("  • lty = 4: 점-대시 혼합선 (Dot-dash)", '\n')
      cat("  ", '\n')
      cat("  • lwd = 2: 선의 두께를 기본값의 2배로 설정", '\n')
-     cat("  ", '\n')
-     cat("  ", '\n')
      return(cat("      ", '\n'))  }
 
   x_expr <- substitute(x)
