@@ -2,8 +2,12 @@ cor22 <- function(x, y, digit = 2) {
 
     if (base::missing(x)) {
       cat("   ", "\n")
-      cat("  \033[1;33mcor22(x, y, digit=4)\033[0m", "\n")
-      cat("  \033[1;33mcor22(df, digit=4)\033[0m", "\n")
+      cat("  \033[1;31m# Original 명령문 ----- \033[0m", "\n")
+      cat("  \033[1;32m  cor(df$x, df$y, use = 'complete.obs', method = 'pearson') \033[0m", "\n")
+      cat("  \033[1;32m \033[0m", "\n")
+      cat("  \033[1;31m# cor22 명령문 ----- \033[0m", "\n")
+      cat("  \033[1;32m  cor22(df$x, df$y, digit=4)\033[0m", "\n")
+      cat("  \033[1;32m  cor22(df, digit=4)\033[0m", "\n")
       return(cat("   \n"))
     }
 
