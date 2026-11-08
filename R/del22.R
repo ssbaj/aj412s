@@ -1,10 +1,13 @@
 del22 <- function(dataset_name, ...) {
 
 if (base::missing(dataset_name)) {
-    cat("    ", '\n')
-    cat("  To delete variables(var1 and var2) from data set, use following command  ", '\n')
-	cat("  new_df <- del22(df, var1, var2) ", '\n')
-    return(cat("    ", '\n'))  }
+cat(" \033[1;31m# Original 명령문 ---------- \033[0m", '\n' )
+cat(" \033[1;32m  new_df <- df[ , -c(1, 3:5, 6)] \033[0m", '\n' )
+cat(" \033[1;32m   \033[0m", '\n' )
+cat(" \033[1;32m  To delete variables(var1 and var2) from data set, use following command  \033[0m", '\n' )
+cat(" \033[1;31m# del22 명령문 ---------- \033[0m", '\n' )
+cat(" \033[1;32m  new_df <- del22(df, var1, var2)  \033[0m", '\n' )
+return( cat("    ", '\n'))  }
 
 dataset_name<-as.data.frame(dataset_name)
   

@@ -1,5 +1,5 @@
-\name{myplot}
-\alias{myplot}
+\name{newplot}
+\alias{newplot}
 \title{overlapping plotting}
 \usage{
 newplot()

@@ -46,9 +46,12 @@ cor22 <- function(x, y, digit = 2) {
     # 빈 문자열("")을 넣기 위해 행렬을 문자형으로 변환
     res_char <- as.matrix(res)
     
-    # 대각선 기준 상위(Upper triangle)를 빈 값으로 변경
-    res_char[upper.tri(res_char)] <- ""
-    
+    # 대각선(diag=TRUE 포함) 및 상위(Upper triangle)를 빈 값으로 변경
+    res_char[upper.tri(res_char, diag = TRUE)] <- ""
+
+    # 완전히 빈 첫 행과 마지막 열 제거
+    res_char <- res_char[-1, -ncol(res_char), drop = FALSE]
+
     # 따옴표 없이 깔끔하게 출력하기 위해 noquote 객체로 반환
     return(noquote(res_char))
     

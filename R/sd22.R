@@ -1,9 +1,14 @@
+
 sd22 <- function(x, na.rm = TRUE) {
   
   # 1. 입력값이 없을 때 도움말 출력
   if (base::missing(x)) {
+    cat(" # Original 명령문 ------ \n")
+    cat("    \033[1;31msd(df$cov, na.rm=T) \033[0m", "\n")
+    cat("  \n")
+    cat(" # sd22 명령문 ------ \n")
     cat("    sd22(x) : 표준편차 계산 (Character는 숫자로 자동 변환) \n")
-    cat("    \033[1;31msd22(df$variable) \033[0m", "\n")
+    cat("    \033[1;31msd22(df$cov) \033[0m", "\n")
     return(cat("   ", "\n"))
   }
 
@@ -30,3 +35,4 @@ c2n <- function(x){
   
   return(sd_val)
 }
+

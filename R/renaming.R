@@ -15,7 +15,9 @@ cat('\033[1;34m--------------------------------------------', '\n')
 for(i in 1:k){
     cat(origin_col[i])
     input_colname<-readline("Change it to : ")
-    origin_col2[i]<-input_colname
+    if (nchar(trimws(input_colname)) > 0) {
+        origin_col2[i]<-trimws(input_colname)
+    }
 }
 
 

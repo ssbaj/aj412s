@@ -1,16 +1,16 @@
-\name{icc}
-\alias{icc}
-\title{icc: Intraclass Correlation Coefficient}
+\name{ICC}
+\alias{ICC}
+\title{ Print ICC for HLM }
 \usage{
-cor22()
+ICC()
 }
 \description{
-Calculating the Intraclass Correlation Coefficient
+Print ICC for HLM
 }
 \examples{
 
-library(lme4); library(lmerTest)
-Result <- lmer(y ~ ind1 + ind2 + (1|id), data=Adata, REML=F, subset=c(ind1>=0.03 & ind2 == 1))
-icc(Result)
+# HLM의 VarCorr 결과 ----
+
+ICC(Result)
 
 }

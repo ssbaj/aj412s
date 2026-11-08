@@ -10,15 +10,18 @@
 
 delrow <- function(df, rows, run = TRUE) {
 
-  if (base::missing(df)) {
-        cat("   ", "\n")
-	cat(" \033[1;31mdelrow(df, 3)              # df <- df[-3, ]  \033[0m", "\n")
-        cat(" \033[1;31mdelrow(df, c(3, 5, 8))     # df <- df[-c(3, 5, 8), ]  \033[0m", "\n")
-        cat("   ", "\n")
-        return(invisible(NULL))
-    }
+if (base::missing(df)) {
+cat(" \033[1;31m# Original 명령문 ---------- \033[0m", '\n' )
+cat(" \033[1;32m  new_df <- df[ -3 , ] \033[0m", '\n' )
+cat(" \033[1;32m  new_df <- df[ -c(3, 5, 8) , ] \033[0m", '\n' )
+cat(" \033[1;32m   \033[0m", '\n' )
+cat(" \033[1;32m  To delete rows from data set, use following command  \033[0m", '\n' )
+cat(" \033[1;31m# delrow 명령문 ---------- \033[0m", '\n' )
+cat(" \033[1;32m  new_df <- delrow(df, 3)  \033[0m", '\n' )
+cat(" \033[1;32m  new_df <- delrow(df, c(3, 5, 8) ) \033[0m", '\n' )
+return( invisible(NULL) )  }
 
-  
+
   dname <- deparse(substitute(df))[1]
   stopifnot(is.data.frame(df), is.numeric(rows), length(rows) > 0)
 

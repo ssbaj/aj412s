@@ -1,8 +1,14 @@
 sel22 <- function(dataset_name, ...) {
 
 if (base::missing(dataset_name)) {
-cat(" \033[1;36m# 명령문 예제 ---------- \033[0m", '\n' )
-return( cat(" \033[1;36mdf <- sel22(Adata, 변수1, 변수2) \033[0m", '\n' )) }
+cat(" \033[1;31m# Original 명령문 ---------- \033[0m", '\n' )
+cat(" \033[1;32m  library(dplyr) \033[0m", '\n' )
+cat(" \033[1;32m  new_df <- df %>% select( expend, satprice )  \033[0m", '\n' )
+cat(" \033[1;32m   \033[0m", '\n' )
+cat(" \033[1;31m# sel22 명령문 ---------- \033[0m", '\n' )
+cat(" \033[1;32m  new_df <- sel22(df, 변수1, 변수2) \033[0m", '\n' )
+return( cat(" \033[1;36m \033[0m", '\n' )) }
+
 
 if(missing(...) ) { stop(paste("Error: Variables are not litsed.")) }
 

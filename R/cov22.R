@@ -3,7 +3,7 @@ cov22 <- function(x, y, use="complete.obs") {
   # 도움말 출력 (입력값이 없을 때)
   if (base::missing(x)) {
     cat("    ## Same command: cov(x, y, use='complete.obs') ", "\n")
-    cat("    library(aj412s2); df<-BasicData", "\n")
+    cat("    library(aj412s); df<-BasicData", "\n")
     cat("    \033[1;31mcov22(x, y) \033[0m", "\n")
     return(cat("    \033[1;31mcov22(df$expend, df$inc) \033[0m"))  
   }
