@@ -22,10 +22,10 @@ if (missing(x)) {
   }
   
   if (missing(y)) {
-    stop("Error: y가 없습니다. statetransition(x, y)로 호출하세요.")
+    stop("Error: y가 없음. statetransition(x, y)로 호출하시오.")
   }
   if (!option %in% c(1, 2) || length(option) != 1) {
-    warning("option은 1(확률) 또는 2(빈도)만 가능합니다. option=1로 처리합니다.")
+    warning("option은 1(확률) 또는 2(빈도)만 가능함. option=1로 처리함.")
     option <- 1
   }
 
@@ -36,18 +36,18 @@ if (missing(x)) {
   y <- as.vector(unlist(y))
 
   if (length(x) != length(y)) {
-    stop("Error: x와 y의 길이가 다릅니다.")
+    stop("Error: x와 y의 길이가 다르다.")
   }
 
   # NA가 있는 쌍은 제거
   ok <- !(is.na(x) | is.na(y))
   if (any(!ok)) {
-    warning(sum(!ok), "개의 NA 포함 관측치를 제외했습니다.")
+    warning(sum(!ok), "개의 NA 포함 관측치를 제외함.")
   }
   x <- x[ok]
   y <- y[ok]
   if (length(x) == 0) {
-    stop("Error: 유효한 (NA가 아닌) 관측치가 없습니다.")
+    stop("Error: 유효한 (NA가 아닌) 관측치가 없음.")
   }
 
   # 정방행렬을 위한 모든 State 정의 및 Factor 변환

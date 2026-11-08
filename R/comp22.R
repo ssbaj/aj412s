@@ -1,9 +1,12 @@
 comp22 <- function(dataset_name, ...) {
  
 if (base::missing(dataset_name)) {
-cat(" \033[1;36m# Examples ---------- \033[0m", '\n' )
-cat(" \033[1;36mdf <- comp22(Adata, gender, debt) \033[0m", '\n' )
-return( cat(" \033[1;36mdf <- comp22(Adata) \033[0m", '\n' )) }
+cat(" \033[1;36m# Original 명령문 ---------- \033[0m", '\n' )
+cat(" \033[1;35m  df<-df[complete.cases(df$conv), ]   \033[0m", '\n' )
+cat(" \033[1;35m  \033[0m", '\n' )
+cat(" \033[1;36m# del22 사용법 ---------- \033[0m", '\n' )
+cat(" \033[1;35m  df <- comp22(Adata, gender, debt) \033[0m", '\n' )
+return( cat(" \033[1;35m  df <- comp22(Adata) \033[0m", '\n' )) }
 
 comp21<-function(Adata){
 Adata <- Adata[complete.cases(Adata), ]
